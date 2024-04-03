@@ -4,7 +4,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './src/screens/home/Home';
-import CadastroEmpresa from './src/screens/home/CadastroEmpresa';
+import CadastroEmpresa2 from './src/screens/home/CadastroEmpresa';
 const Stack = createStackNavigator();
 
 //npx expo install react-native-gesture-handler
@@ -14,8 +14,11 @@ function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator>
+      <Text>
+      SEXO GRANDE
+      </Text>
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/> 
-      <Stack.Screen name="CadastroEmpresa" component={CadastroEmpresa} options={{ headerShown: false }}/>
+      <Stack.Screen name="CadastroEmpresa2" component={CadastroEmpresa2} options={{ headerShown: false }}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>

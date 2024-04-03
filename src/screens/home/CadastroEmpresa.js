@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator,
 import { LinearGradient } from "expo-linear-gradient";
 import { CadastrarEmpresa } from '../../CodersPika/funcoes.js';
 
-export default function CadastroEmpresa() {
+export default function CadastroEmpresa2() {
    
     const [nomeEmpresa, setNomeEmpresa] = useState("");
     const [cnpj, setCnpj] = useState("");
