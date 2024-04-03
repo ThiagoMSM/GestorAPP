@@ -53,9 +53,9 @@ const cnpjUnico = (snapshot,cnpj) =>{
         }
     });
     return cnpjJaCadastrado;
+
 }
 
 /*TODO: mudar a forma de cadastro, não gravar nada no banco de dados por agora, só checar se o cnpj é unico. Se sim, deixa passar
 para a próxima etapa (cadastro de gestor), caso contrário, exibe a msg de erro de cnpj não unico.
-
 */
