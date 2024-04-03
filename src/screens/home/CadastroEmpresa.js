@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
 
     ViewBtnVoltar: {
-        marginTop: -120,
+        marginTop: 0,
         width: '50%',
         height: 'auto',
 
