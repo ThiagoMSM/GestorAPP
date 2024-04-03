@@ -17,43 +17,43 @@ export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa)
         alert(camposNaoPreenchidos());
         return;
     }
+    const empresasReferencia = ref(db, 'Empresas'); 
+    const snapshot = await get(empresasReferencia); //pega todos os registros do node Empresas em um vetor        
 
-    const EMPRESASRef = ref(db, 'Empresas'); 
-    const snapshot = await get(EMPRESASRef); //pega todos os registros do node Empresas
-    
-    if (cnpjUnico(snapshot,cnpj)) {
+    if (ValorNaoUnico("cnpj_empresa",snapshot,cnpj)) {
         alert(empresaJaExistente());
         return;
     }
-
-    const empresaRef = push(EMPRESASRef); // manda pro bd
+    const novoNodeEmpresa = push(empresasReferencia); // gera um child node de codigo unico no node empresa (push)
+    
     try {
-        await set(empresaRef, {
+        await set(novoNodeEmpresa, {
             nome_empresa: nomeEmpresa,
             cnpj_empresa: cnpj,
             endereco_empresa: endereco,
             tipo_Empresa: tipoEmpresa
         });
+
         alert(empresaCadastroValido());
-        console.log("ID Unico:", empresaRef.key);
+
+        console.log("ID Unico:", novoNodeEmpresa.key);
+
     } catch (excecao) {
         console.error("Error:", excecao);
     }
 };
 
-const cnpjUnico = (snapshot,cnpj) =>{
-    let cnpjJaCadastrado = false; // Bool 
+const ValorNaoUnico = (campo, snapshot,valor) =>{
+    let jaExiste = false;
     snapshot.forEach((registro) => { //itera por cada registro do node Empresas
-
         let registroTraduzido = registro.val(); //"traduz" o registro
-        if (registroTraduzido.cnpj_empresa === cnpj) 
+        if (registroTraduzido[campo] === valor) 
         { 
-            cnpjJaCadastrado = true;
+            jaExiste = true;
             return; 
         }
     });
-    return cnpjJaCadastrado;
-
+    return jaExiste;
 }
 
 /*TODO: mudar a forma de cadastro, não gravar nada no banco de dados por agora, só checar se o cnpj é unico. Se sim, deixa passar
