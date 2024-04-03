@@ -59,25 +59,30 @@ export default function Home() {
                                 secureTextEntry={true}
                                 placeholderTextColor="#878787"
                             />
-                           {/* Botão de cadastro */}
-                            <View style={styles.BtnCadastrarView}>
-                            <TouchableOpacity /*onPress={() => navegaTela(navigation,'TelaTeste')}*/ style={styles.btn}>
+                           {/* Botão de Entrar */}
+                            <View style={styles.BtnEntrarView}>
+                            <TouchableOpacity /*onPress={() => navegaTela(navigation,'TelaTeste')}*/ style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
-
-                            <Text style={styles.lblLogTech}>
+                        </View>
+                        
+                         {/* Texto */}
+                        <Text style={styles.lblLogTech}>
                                 Cadastre sua empresa e torne-se o gestor clicando no botão abaixo.
-                             </Text>
+                        </Text>
+
+
 
                             {/* Botão de cadastro */}
                             <View style={[styles.BtnCadastrarView, {width:"170%"}] }>
-                                <TouchableOpacity onPress={() => navegaTela(navigation,'CadastroEmpresa')} style={styles.btn}>
+
+                                <TouchableOpacity onPress={() => navegaTela(navigation,'CadastroEmpresa')} style={styles.BtnCadastrarEmpresa}>
                                     <Text style={styles.txtBtn}>Cadastrar Empresa</Text>
                                 </TouchableOpacity>
+
                             </View>
 
-                        </View>
                     </View>
                 </ScrollView>
             </LinearGradient>
@@ -114,6 +119,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         fontFamily: 'JetBrainsMono_400Regular',
+        marginTop: 5,
     },
     form: {
         alignItems: "center",
@@ -176,7 +182,43 @@ const styles = StyleSheet.create({
         height: 'auto',
 
 
-    }
+    },
+    BtnEntrarView: {
+        alignItems: "center",
+    },
+    BtnCadastrarView: {
+        alignItems: "center",
+    },
+    BtnEntrar: {
+        backgroundColor: "#E04D18",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 30,
+        shadowColor: "#000",
+        shadowOpacity: 10,
+        shadowRadius: 4,
+        elevation: 5,
+        margin: 10,
+        width: "55%",
+        height: 40,
+        verticalAlign: 'center',
+    },
+    BtnCadastrarEmpresa: {
+        backgroundColor: "#E04D18",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 30,
+        shadowColor: "#000",
+        shadowOpacity: 10,
+        shadowRadius: 4,
+        elevation: 5,
+        margin: 10,
+        width: "45%",
+        height: 40,
+        verticalAlign: 'center',
+
+    },
+    
    
 
 });

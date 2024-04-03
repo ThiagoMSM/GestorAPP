@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { CadastrarEmpresa } from '../../CodersPika/funcoes.js';
+import { navegaTela } from '../../CodersPika/funcoes.js';
+import { useNavigation } from '@react-navigation/native';
 
 export default function CadastroEmpresa() {
    
+    const navigation = useNavigation();
     const [nomeEmpresa, setNomeEmpresa] = useState("");
     const [cnpj, setCnpj] = useState("");
     const [endereco, setEndereco] = useState("");
@@ -16,7 +19,7 @@ export default function CadastroEmpresa() {
 
   
                 <View style={styles.ViewBtnVoltar}>
-                    <TouchableOpacity onPress={() => VoltarTela(navigation)} style={styles.btn}>
+                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Home')} style={styles.btn}>
                     <Text style={styles.txtBtn}>Voltar</Text>
                     </TouchableOpacity>
                 </View>
@@ -100,10 +103,10 @@ const styles = StyleSheet.create({
         fontSize: 35,
         color: '#fff',
         textAlign: 'center',
-     
+        marginTop: "2%",
     },
     divTextTitle: {
-        marginTop: "15%",
+        marginTop: "0%",
     },
     divTextSubTitle: {
         alignItems: "center",
