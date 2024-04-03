@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { CadastrarEmpresa } from '../../CodersPika/funcoes.js';
 
@@ -9,7 +9,6 @@ export default function CadastroEmpresa() {
     const [cnpj, setCnpj] = useState("");
     const [endereco, setEndereco] = useState("");
     const [tipoEmpresa, setTipoEmpresa] = useState("");
-
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
@@ -22,13 +21,11 @@ export default function CadastroEmpresa() {
                     </TouchableOpacity>
                 </View>
             
-
                     <View style={styles.divTextTitle}>
                         <Text style={styles.lblGestorAPP}>
                             Gestor APP
                         </Text>
                     </View>
-
                     <View style={styles.divTextSubTitle}>
                         <Text style={styles.lblLogTech}>
                             Logística + Tecnologia
@@ -43,7 +40,7 @@ export default function CadastroEmpresa() {
 
                             <TextInput
                                 style={styles.input}
-                                placeholder="Nome da empresa"
+                                placeholder="Nome da Empresa"
                                 placeholderTextColor="#878787"
                                 onChangeText={(text) => setNomeEmpresa(text)}
                                 value={nomeEmpresa}
@@ -64,7 +61,7 @@ export default function CadastroEmpresa() {
                             />
                             <TextInput
                                 style={styles.input}
-                                placeholder="Tipo de empresa"
+                                placeholder="Tipo de Empresa"
                                 placeholderTextColor="#878787"
                                 onChangeText={(text) => setTipoEmpresa(text)}
                                 value={tipoEmpresa}
@@ -72,10 +69,7 @@ export default function CadastroEmpresa() {
 
                             <TouchableOpacity onPress={() => CadastrarEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)}  style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
-                            </TouchableOpacity>
-
-
-                            
+                            </TouchableOpacity>             
                         </View>
                     </View>
                 </ScrollView>
@@ -83,7 +77,6 @@ export default function CadastroEmpresa() {
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

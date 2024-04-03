@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { Cadastrar, entrar, navegaTela } from '../../CodersPika/funcoes.js';
+import { navegaTela } from '../../CodersPika/funcoes.js';
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
@@ -17,8 +16,7 @@ export default function Home() {
         JetBrainsMono_400Regular,
         JetBrainsMono_700Bold
     });
-    //const [email, setEmail] = useState("");
-    
+
     if (!fontLoaded) {
         return <ActivityIndicator />;
     }

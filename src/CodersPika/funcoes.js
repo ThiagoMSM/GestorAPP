@@ -16,6 +16,7 @@ export const CadastrarEmpresa = (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
         alert("Preencha todos os campos antes de continuar");
         return;
     }
+
     const empresasRef = ref(db, 'Empresas');
     const empresaRef = push(empresasRef); // Create a new reference for the empresa
 
