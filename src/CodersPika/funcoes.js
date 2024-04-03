@@ -6,7 +6,7 @@ export const entrar = (email) => {
     alert(`seu email ai mermao: ${email}`);
 };
 
-export const navegaTela = (navigation,telaAlvo) =>{
+export const navegaTela = (navigation, telaAlvo) =>{
     navigation.navigate(telaAlvo);
 };
 
