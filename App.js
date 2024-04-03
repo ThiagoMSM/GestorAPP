@@ -19,6 +19,9 @@ function App() {
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
+
+    //Thiago é um gostoso
+
   );
 }
 export default App;
