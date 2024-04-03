@@ -21,10 +21,10 @@ export default function PaginaInicial() {
         return <ActivityIndicator />;
     }
 
-    const LogoPequenoGestor = require('../../../assets/LogoPequenoGestor.png');
+    const LogoPequenoGestor = require('../../../assets/LogoPequenoGrandeGestor2.png');
     return (
         <View style={styles.container}>
-            <LinearGradient colors={['#F3CEBE', '#e04d18']} style={styles.background}>
+            <LinearGradient colors={['#F25C05', '#0D0D0D']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
         
             
@@ -80,20 +80,6 @@ const styles = StyleSheet.create({
     },
     
    
-    btn: {
-        backgroundColor: "#E04D18",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 30,
-        shadowColor: "#000",
-        shadowOpacity: 10,
-        shadowRadius: 4,
-        elevation: 5,
-        margin: 15,
-        width: "55%",
-        height: 40,
-        verticalAlign: 'center',
-    },
     txtBtn: {
         fontSize: 40,
         fontFamily: "JetBrainsMono_400Regular",
@@ -108,9 +94,13 @@ const styles = StyleSheet.create({
         verticalAlign: 'middle'
     },
     image: {
-
+        marginTop: 30,
+        marginRight: 5,
+        width: 250,
+        height: 250,
     },
     LblTitulo: {
+        marginTop: 20,
         fontFamily: 'JetBrainsMono_700Bold',
         fontSize: 35,
         color: '#fff',
@@ -143,7 +133,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     BtnEntrar: {
-        backgroundColor: "#401E11",
+        backgroundColor: "#F47405",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 30,
