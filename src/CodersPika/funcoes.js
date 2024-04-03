@@ -27,7 +27,6 @@ export const CadastrarEmpresa = (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
         tipo_Empresa: tipoEmpresa
     }).then(() => {
         alert("Empresa cadastrada com sucesso");
-
         // Use the key property of the reference to get the unique ID
         console.log("New empresa ID:", empresaRef.key);
     }).catch((error) => {
