@@ -181,7 +181,5 @@ const styles = StyleSheet.create({
         marginTop: 0,
         width: '50%',
         height: 'auto',
-
-
     },
 });
