@@ -10,7 +10,6 @@ const Stack = createStackNavigator();
 //npx expo install react-native-gesture-handler
 //npx expo install react-native-screens react-native-safe-area-context
 //npm install @react-navigation/native @react-navigation/stack
-
 function App() {
   return (
     <NavigationContainer>
@@ -22,5 +21,4 @@ function App() {
   </NavigationContainer>
   );
 }
-
 export default App;
