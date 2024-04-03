@@ -19,7 +19,7 @@ export default function CadastroEmpresa() {
 
   
                 <View style={styles.ViewBtnVoltar}>
-                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Home')} style={styles.btn}>
+                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Login')} style={styles.btn}>
                     <Text style={styles.txtBtn}>Voltar</Text>
                     </TouchableOpacity>
                 </View>

@@ -8,7 +8,7 @@ import { navegaTela } from '../../CodersPika/funcoes.js';
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
 
-export default function Home() {
+export default function Login() {
 
     const navigation = useNavigation();
 
