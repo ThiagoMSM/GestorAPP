@@ -15,6 +15,14 @@ export default function CadastroEmpresa() {
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
 
+  
+                <View style={styles.ViewBtnVoltar}>
+                    <TouchableOpacity onPress={() => VoltarTela(navigation)} style={styles.btn}>
+                    <Text style={styles.txtBtn}>Voltar</Text>
+                    </TouchableOpacity>
+                </View>
+            
+
                     <View style={styles.divTextTitle}>
                         <Text style={styles.lblGestorAPP}>
                             Gestor APP
@@ -26,7 +34,7 @@ export default function CadastroEmpresa() {
                             Logística + Tecnologia
                         </Text>
                     </View>
-                    <Text style={styles.lblGestorAPP}>
+                    <Text style={styles.lblCadastro}>
                             Cadastro
                         </Text>
 
@@ -65,6 +73,9 @@ export default function CadastroEmpresa() {
                             <TouchableOpacity onPress={() => CadastrarEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)}  style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
                             </TouchableOpacity>
+
+
+                            
                         </View>
                     </View>
                 </ScrollView>
@@ -89,6 +100,14 @@ const styles = StyleSheet.create({
         fontSize: 35,
         color: '#fff',
         textAlign: 'center',
+        marginBottom: '10px',
+    },
+    lblCadastro: {
+        fontFamily: 'JetBrainsMono_700Bold',
+        fontSize: 35,
+        color: '#fff',
+        textAlign: 'center',
+     
     },
     divTextTitle: {
         marginTop: "15%",
@@ -98,7 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     lblLogTech: {
-        fontSize: 15,
+        fontSize: 11,
         color: '#fff',
         textAlign: 'center',
         fontFamily: 'JetBrainsMono_400Regular',
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
     form: {
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 50,
+        marginTop: 10,
     },
     cardForm: {
         backgroundColor: 'rgba(217,217,217,0.22)',
@@ -156,5 +175,13 @@ const styles = StyleSheet.create({
         textDecorationLine: "underline",
         marginTop: -10,
         fontSize: 12,
+    },
+
+    ViewBtnVoltar: {
+        marginTop: -120,
+        width: '50%',
+        height: 'auto',
+
+
     },
 });

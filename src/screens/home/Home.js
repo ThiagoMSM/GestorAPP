@@ -27,13 +27,7 @@ export default function Home() {
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-            {/*
-                <View style={styles.ViewBtnVoltar}>
-                    <TouchableOpacity onPress={() => VoltarTela(navigation)} style={styles.btn}>
-                    <Text style={styles.txtBtn}>Voltar</Text>
-                    </TouchableOpacity>
-                </View>
-                */}
+          
                     {/* Titulo e subtitulo */}
                     <View style={styles.divTextTitle}>
                         <Text style={styles.lblGestorAPP}>
