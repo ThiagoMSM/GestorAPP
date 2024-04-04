@@ -1,9 +1,12 @@
+import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { navegaTela } from '../../CodersPika/funcoes.js';
+import { navegaTela } from '../../servicos/funcoes.js';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
@@ -16,6 +19,9 @@ export default function Login() {
         JetBrainsMono_400Regular,
         JetBrainsMono_700Bold
     });
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     if (!fontLoaded) {
         return <ActivityIndicator />;
@@ -51,6 +57,8 @@ export default function Login() {
                                 style={styles.input}
                                 placeholder="Email"
                                 placeholderTextColor="#878787"
+                                onChangeText={(text) => setEmail(text)}
+                                value={email}
                             />
                             {/* Input de senha */}
                             <TextInput
@@ -58,10 +66,12 @@ export default function Login() {
                                 placeholder="Senha"
                                 secureTextEntry={true}
                                 placeholderTextColor="#878787"
+                                onChangeText={(text) => setPassword(text)}
+                                value={password}
                             />
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity /*onPress={() => navegaTela(navigation,'TelaTeste')}*/ style={styles.BtnEntrar}>
+                            <TouchableOpacity /*onPress={() => handlelogin(email,password)}*/ style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -89,6 +99,17 @@ export default function Login() {
         </View>
     );
 };
+/*
+async function handlelogin(email,password) {
+    try {
+        const auth = getAuth();
+        await signInWithEmailAndPassword(auth, email, password);
+        // User logged in successfully, navigate to the next screen
+    } catch (error) {
+        Alert.alert('Error', error.message);
+    }
+};
+*/
 
 const styles = StyleSheet.create({
     container: {

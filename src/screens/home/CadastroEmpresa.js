@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { obtemKeyEmpresa,navegaTela,dadosCongruentesEmpresa } from '../../CodersPika/funcoes.js';
-import { useNavigation,useRoute  } from '@react-navigation/native';
+import { obtemKeyEmpresa } from '../../servicos/autenticacao.js';
+import { navegaTela } from "../../servicos/funcoes.js";
+import { useNavigation } from '@react-navigation/native';
 
 export default function CadastroEmpresa() {
    
@@ -17,7 +18,6 @@ export default function CadastroEmpresa() {
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
 
-  
                 <View style={styles.ViewBtnVoltar}>
                     <TouchableOpacity onPress={() => navegaTela(navigation, 'Login')} style={styles.btn}>
                     <Text style={styles.txtBtn}>Voltar</Text>
@@ -84,10 +84,8 @@ export default function CadastroEmpresa() {
 };
 
 async function checaDados(navigation, nomeEmpresa,cnpj,endereco,tipoEmpresa){
-    if(await dadosCongruentesEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)){//espera pegar tudo antes de mandar pra baixo:
-        obtemKeyEmpresa();
-        navegaTela(navigation,'CadastroGestor', {nomeEmpresa, cnpj,endereco,tipoEmpresa}); 
-    } 
+    if (await obtemKeyEmpresa([nomeEmpresa,cnpj,endereco,tipoEmpresa],cnpj))
+        navegaTela(navigation,'CadastroGestor', {nomeEmpresa, cnpj,endereco,tipoEmpresa});   
 }
 
 const styles = StyleSheet.create({

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { CadastrarGestor,CadastrarEmpresa } from '../../CodersPika/funcoes.js';
-import { navegaTela } from '../../CodersPika/funcoes.js';
+import { CadastrarGestor,CadastrarEmpresa } from '../../servicos/autenticacao.js';
+import { navegaTela } from '../../servicos/funcoes.js';
 import { useNavigation,useRoute } from '@react-navigation/native';
 
 
@@ -23,7 +23,6 @@ export default function CadastroEmpresa() {
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-
   
                 <View style={styles.ViewBtnVoltar}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.btn}>
