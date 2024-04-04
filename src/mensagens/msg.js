@@ -9,3 +9,14 @@ export const camposNaoPreenchidos= () => {
 export const empresaCadastroValido= () => {
     return "Empresa cadastrada com sucesso";
 };
+
+export const GestorJaExistente= () => {
+    return "Gestor já existente, cadastre outro ou logue";
+};
+
+export const LoginGestorFeito= () => {
+    return "Gestor cadastrado com sucesso!";
+};
+
+
+

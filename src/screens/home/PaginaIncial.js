@@ -21,7 +21,7 @@ export default function PaginaInicial() {
         return <ActivityIndicator />;
     }
 
-    const LogoPequenoGestor = require('../../../assets/LogoPequenoGrandeGestor2.png');
+    const LogoPequenoGestor = require('../../../assets/LogoPequenoGestor.png');
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#F25C05', '#0D0D0D']} style={styles.background}>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     
    
     txtBtn: {
-        fontSize: 40,
+        fontSize: 35,
         fontFamily: "JetBrainsMono_400Regular",
         color: "#FFFFFF",
     },
@@ -94,10 +94,10 @@ const styles = StyleSheet.create({
         verticalAlign: 'middle'
     },
     image: {
-        marginTop: 30,
+        marginTop: 40,
         marginRight: 5,
-        width: 250,
-        height: 250,
+        width: 500,
+        height: 400,
     },
     LblTitulo: {
         marginTop: 20,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     BtnEntrar: {
-        backgroundColor: "#F47405",
+        backgroundColor: "#E04D18",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 30,
