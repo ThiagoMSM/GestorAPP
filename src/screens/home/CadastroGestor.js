@@ -12,6 +12,7 @@ export default function CadastroEmpresa() {
     const [EmailGestor, setEmailGestor] = useState("");
     const [CPF, setCPFGestor] = useState("");
     const [Senha, setSenhaGestor] = useState("");
+    const [NomeGestor, setNomeGestor] = useState("");
 
     return (
         <View style={styles.container}>
@@ -32,6 +33,13 @@ export default function CadastroEmpresa() {
                     <View style={styles.form}>
                         <View style={styles.cardForm}>
 
+                        <TextInput
+                                style={styles.input}
+                                placeholder="Nome completo"
+                                placeholderTextColor="#878787"
+                                onChangeText={(text) => setNomeGestor(text)}
+                                value={NomeGestor}
+                        />
                             <TextInput
                                 style={styles.input}
                                 placeholder="Email"
@@ -39,6 +47,7 @@ export default function CadastroEmpresa() {
                                 onChangeText={(text) => setEmailGestor(text)}
                                 value={EmailGestor}
                             />
+                            
                               <TextInput
                                 keyboardType = 'numeric'
                                 style={styles.input}
@@ -58,7 +67,7 @@ export default function CadastroEmpresa() {
                             />
                           
 
-                            <TouchableOpacity onPress={() => CadastrarGestor(EmailGestor,CPF,Senha)}  style={styles.btn}>
+                            <TouchableOpacity onPress={() => CadastrarGestor(EmailGestor,CPF,Senha, NomeGestor)}  style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
                             </TouchableOpacity>             
                         </View>
