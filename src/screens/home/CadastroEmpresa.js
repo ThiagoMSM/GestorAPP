@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { CadastrarEmpresa } from '../../CodersPika/funcoes.js';
+import { dadosCongruentesEmpresa } from '../../CodersPika/funcoes.js';
 import { navegaTela } from '../../CodersPika/funcoes.js';
 import { useNavigation } from '@react-navigation/native';
 
@@ -70,7 +70,15 @@ export default function CadastroEmpresa() {
                                 value={tipoEmpresa}
                             />
 
-                            <TouchableOpacity onPress={() => CadastrarEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)}  style={styles.btn}>
+                            <TouchableOpacity 
+
+                                onPress={() => {
+
+                                    if(dadosEmpresaCongruentes(nomeEmpresa,cnpj,endereco,tipoEmpresa))
+                                        navegaTela(navigation,'CadastroGestor');
+                                    }}
+
+                                style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
                             </TouchableOpacity>             
                         </View>

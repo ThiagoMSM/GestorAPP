@@ -7,7 +7,6 @@ import Login from './src/screens/home/Login';
 import CadastroEmpresa from './src/screens/home/CadastroEmpresa';
 import PaginaInicial from './src/screens/home/PaginaIncial';
 import CadastroGestor from './src/screens/home/CadastroGestor';
-
 const Stack = createStackNavigator();
 
 //npx expo install react-native-gesture-handler
