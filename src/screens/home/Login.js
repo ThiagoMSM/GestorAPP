@@ -9,9 +9,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
-import { db } from "../../DB/firebase.js";
+import { app } from "../../DB/firebase.js";
 
-const auth = initializeAuth(db, {
+const auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
   });
 /*
