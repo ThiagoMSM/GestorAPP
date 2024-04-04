@@ -12,13 +12,26 @@ export const navegaTela = (navigation, telaAlvo) =>{
 };
 
 //banco de dados:
-export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
+export const dadosEmpresaCongruentes = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
+    let irregular = false;
+
     if (nomeEmpresa === "" || cnpj === "" || endereco === "" || tipoEmpresa === "") {
         alert(camposNaoPreenchidos());
-        return;
+        irregular = true;
     }
     const empresasReferencia = ref(db, 'Empresas'); 
     const snapshot = await get(empresasReferencia); //pega todos os registros do node Empresas em um vetor        
+
+    if (ValorNaoUnico("cnpj_empresa",snapshot,cnpj)){
+        alert(empresaJaExistente());
+        irregular = true;
+    }
+    return irregular;
+}
+
+
+export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
+    
 
     if (ValorNaoUnico("cnpj_empresa",snapshot,cnpj)) {
         alert(empresaJaExistente());
@@ -48,7 +61,7 @@ const ValorNaoUnico = (campo, snapshot,valor) =>{
     snapshot.forEach((registro) => { //itera por cada registro do node Empresas
         let registroTraduzido = registro.val(); //"traduz" o registro
         if (registroTraduzido[campo] === valor) 
-        { 
+        {
             jaExiste = true;
             return; 
         }
