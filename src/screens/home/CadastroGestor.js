@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { CadastrarGestor } from '../../CodersPika/funcoes.js';
+import { CadastrarGestor,CadastrarEmpresa } from '../../CodersPika/funcoes.js';
 import { navegaTela } from '../../CodersPika/funcoes.js';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useRoute } from '@react-navigation/native';
+
+
 
 export default function CadastroEmpresa() {
    
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const { nomeEmpresa,cnpj,endereco,tipoEmpresa } = route.params;
 
     const [EmailGestor, setEmailGestor] = useState("");
     const [CPF, setCPFGestor] = useState("");
@@ -21,7 +26,7 @@ export default function CadastroEmpresa() {
 
   
                 <View style={styles.ViewBtnVoltar}>
-                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Login')} style={styles.btn}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.btn}>
                     <Text style={styles.txtBtn}>Voltar</Text>
                     </TouchableOpacity>
                 </View>
@@ -65,9 +70,10 @@ export default function CadastroEmpresa() {
                                 onChangeText={(text) => setSenhaGestor(text)}
                                 value={Senha}
                             />
-                          
-
-                            <TouchableOpacity onPress={() => CadastrarGestor(EmailGestor,CPF,Senha, NomeGestor)}  style={styles.btn}>
+                            <TouchableOpacity onPress={async() =>{
+                                await CadastrarGestor(EmailGestor,CPF,Senha, NomeGestor);
+                                await CadastrarEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa );
+                            }}  style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
                             </TouchableOpacity>             
                         </View>

@@ -1,17 +1,19 @@
 import { ref, push, set, get } from "firebase/database";
 import { db } from "../DB/firebase";
-import {empresaJaExistente, camposNaoPreenchidos, empresaCadastroValido, GestorJaExistente, LoginGestorFeito} from "../mensagens/msg"; //importa as mensagens
+import {empresaJaExistente, camposNaoPreenchidos, empresaCadastroValido, GestorJaExistente, LoginGestorEempresaFeito} from "../mensagens/msg"; //importa as mensagens
 
 //geral:
 export const entrar = (email) => {
     alert(`Seu email aí, mano: ${email}`);
 };
 
-export const navegaTela = (navigation, telaAlvo) =>{
-    navigation.navigate(telaAlvo);
+export const navegaTela = (navigation, telaAlvo, params) =>{
+    navigation.navigate(telaAlvo, params);
 };
 
 //banco de dados:
+
+let chaveEmpresa = 'ValorPadrao';
 
 export const dadosCongruentesEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
 
@@ -19,6 +21,7 @@ export const dadosCongruentesEmpresa = async (nomeEmpresa, cnpj, endereco, tipoE
         alert(camposNaoPreenchidos());
         return false;
     }
+
     const empresasReferencia = ref(db, 'Empresas'); 
     const snapshot = await get(empresasReferencia); //pega todos os registros do node Empresas em um vetor        
 
@@ -28,36 +31,6 @@ export const dadosCongruentesEmpresa = async (nomeEmpresa, cnpj, endereco, tipoE
     }
     return true; //true quando tem nada de errado
 }
-
-
-export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
-    
-
-    if (ValorNaoUnico("cnpj_empresa",snapshot,cnpj)) {
-        alert(empresaJaExistente());
-        return;
-    }
-
-    const empresasReferencia = ref(db, 'Empresas'); 
-
-    const novoNodeEmpresa = push(empresasReferencia); // gera um child node de codigo unico no node empresa (push)
-    
-    try {
-        await set(novoNodeEmpresa, { // empresasReferencia, id>>>>>>>>>>novoNodeEmpresa[0] = empresasReferencia, novoNodeEmpresa[1] = "5ifdsidf99i3w9i"
-            nome_empresa: nomeEmpresa,
-            cnpj_empresa: cnpj,
-            endereco_empresa: endereco,
-            tipo_Empresa: tipoEmpresa
-        });
-
-        alert(empresaCadastroValido());
-
-        console.log("ID Unico:", novoNodeEmpresa.key);
-
-    } catch (excecao) {
-        console.error("Error:", excecao);
-    }
-};
 
 const ValorNaoUnico = (campo, snapshot,valor) =>{
     let jaExiste = false;
@@ -72,12 +45,10 @@ const ValorNaoUnico = (campo, snapshot,valor) =>{
     return jaExiste;
 }
 
-/*TODO: mudar a forma de cadastro, não gravar nada no banco de dados por agora, só checar se o cnpj é unico. Se sim, deixa passar
-para a próxima etapa (cadastro de gestor), caso contrário, exibe a msg de erro de cnpj não unico.
-*/
-
-
-
+export const obtemKeyEmpresa = () =>{
+    const empresasReferencia = ref(db, 'Empresas'); 
+    chaveEmpresa = push(empresasReferencia); //chave node pra empresa ***NAO SEI SE TA CERTO FAZER ASSIM!!!!!!!!!!!!!!!!!!!!!***
+}
 
 //////////////CADASTRAR GESTOR//////////////
 ////////////////////////////////////////////////////////////////
@@ -87,34 +58,55 @@ export const CadastrarGestor = async (EmailGestor,CPF,Senha, NomeGestor) => {
         return;
     }
 
-   
-
-
     const LoginsRef = ref(db, 'Logins'); 
     const ForEachLine = await get(LoginsRef); //pega todos os registros do node Empresas
     
-    if (ValorNaoUnico('Email_Gestor', ForEachLine, EmailGestor)) {
+    if (ValorNaoUnico('Email', ForEachLine, EmailGestor)) {
         alert(GestorJaExistente());
         return;
     }
-        const novoNodeLogin = push(LoginsRef);
+    const novoNodeLogin = push(LoginsRef);
 
     try {
         await set(novoNodeLogin, {
-            Nome_Gestor: NomeGestor,
-            Email_Gestor: EmailGestor,
-            CPF_Gestor: CPF,
-            Senha_Gestor: Senha
+            Nome: NomeGestor,
+            Email: EmailGestor,
+            CPF: CPF,
+            Nivel_acesso: 2,
+            Senha: Senha,
+            empresa_id: chaveEmpresa.key
         });
-
-        alert(LoginGestorFeito());
-
-        console.log("ID Unico:", novoNodeLogin.key);
 
     } catch (excecao) {
         console.error("Error:", excecao);
     }
+};
 
-}
+export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
+    if (nomeEmpresa === "" || cnpj === "" || endereco === "" || tipoEmpresa === "") {
+        alert(camposNaoPreenchidos());
+        return;
+    }
+    
+    const EmpresasRef = ref(db, 'Empresas'); 
+    const ForEachLine = await get(EmpresasRef); //pega todos os registros do node Empresas
+    
+    if (ValorNaoUnico('cnpj_empresa', ForEachLine, cnpj)) {
+        alert(GestorJaExistente());
+        return;
+    }
 
+    try {
+        await set(chaveEmpresa, {
+            nome_empresa: nomeEmpresa,
+            cnpj_empresa: cnpj,
+            endereco_empresa: endereco,
+            tipo_Empresa: tipoEmpresa
+        });
 
+        alert(LoginGestorEempresaFeito());
+
+    } catch (excecao) {
+        console.error("Error:", excecao);
+    }
+};

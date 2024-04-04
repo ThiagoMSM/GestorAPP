@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { dadosCongruentesEmpresa } from '../../CodersPika/funcoes.js';
-import { navegaTela } from '../../CodersPika/funcoes.js';
-import { useNavigation } from '@react-navigation/native';
+import { obtemKeyEmpresa,navegaTela,dadosCongruentesEmpresa } from '../../CodersPika/funcoes.js';
+import { useNavigation,useRoute  } from '@react-navigation/native';
 
 export default function CadastroEmpresa() {
    
@@ -72,13 +71,9 @@ export default function CadastroEmpresa() {
                             />
 
                             <TouchableOpacity 
-
-                                onPress={() => {
-                                    if(dadosCongruentesEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa))
-                                        navegaTela(navigation,'CadastroGestor');
-                                    }}
-                                style={styles.btn}>
-                                <Text style={styles.txtBtn}>Cadastrar</Text>
+                                onPress= {() => checaDados(navigation,nomeEmpresa,cnpj,endereco,tipoEmpresa)}
+                                style={[styles.btn,{width:"90%",height:"15%"}]}>
+                                <Text style={styles.txtBtn}>Continuar com o cadastro</Text>
                             </TouchableOpacity>             
                         </View>
                     </View>
@@ -87,6 +82,16 @@ export default function CadastroEmpresa() {
         </View>
     );
 };
+
+async function checaDados(navigation, nomeEmpresa,cnpj,endereco,tipoEmpresa){
+    if(await dadosCongruentesEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)){
+        obtemKeyEmpresa();
+        navegaTela(navigation,'CadastroGestor', {nomeEmpresa, cnpj,endereco,tipoEmpresa}); 
+    } //espera pegar tudo antes de mandar pra baixo:
+         
+    
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

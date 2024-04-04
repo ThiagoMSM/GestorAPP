@@ -14,8 +14,8 @@ export const GestorJaExistente= () => {
     return "Gestor já existente, cadastre outro ou logue";
 };
 
-export const LoginGestorFeito= () => {
-    return "Gestor cadastrado com sucesso!";
+export const LoginGestorEempresaFeito= () => {
+    return "Empresa e gestor cadastrados com sucesso!";
 };
 
 
