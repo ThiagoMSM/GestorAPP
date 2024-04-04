@@ -78,8 +78,6 @@ const styles = StyleSheet.create({
         justifyContent: 'top',
         alignItems: 'center',
     },
-    
-   
     txtBtn: {
         fontSize: 35,
         fontFamily: "JetBrainsMono_400Regular",
@@ -146,8 +144,4 @@ const styles = StyleSheet.create({
         height: "auto",
         verticalAlign: 'center',
     },
-  
-    
-   
-
 });

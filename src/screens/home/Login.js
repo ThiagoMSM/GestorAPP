@@ -7,6 +7,13 @@ import { useNavigation } from '@react-navigation/native';
 import { navegaTela } from '../../servicos/funcoes.js';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+import { app } from "../../DB/firebase.js";
+
+const auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+  });
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
@@ -71,7 +78,7 @@ export default function Login() {
                             />
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity /*onPress={() => handlelogin(email,password)}*/ style={styles.BtnEntrar}>
+                            <TouchableOpacity onPress={() => handlelogin(email,password,navigation)} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -82,34 +89,30 @@ export default function Login() {
                                 Cadastre sua empresa e torne-se o gestor clicando no botão abaixo.
                         </Text>
 
-
-
                             {/* Botão de cadastro */}
                             <View style={[styles.BtnCadastrarView, {width:"170%"}] }>
-
                                 <TouchableOpacity onPress={() => navegaTela(navigation,'CadastroEmpresa')} style={styles.BtnCadastrarEmpresa}>
                                     <Text style={styles.txtBtn}>Cadastrar Empresa</Text>
                                 </TouchableOpacity>
-
                             </View>
-
                     </View>
                 </ScrollView>
             </LinearGradient>
         </View>
     );
 };
-/*
-async function handlelogin(email,password) {
+
+async function handlelogin(email,password,navigation) {
     try {
         const auth = getAuth();
         await signInWithEmailAndPassword(auth, email, password);
-        // User logged in successfully, navigate to the next screen
+        navegaTela(navigation,'PaginaLogado',email)
     } catch (error) {
-        Alert.alert('Error', error.message);
+        alert(error.message);
+        console.log(error.message);
     }
 };
-*/
+
 
 const styles = StyleSheet.create({
     container: {
