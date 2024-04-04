@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function CadastroEmpresa() {
    
     const navigation = useNavigation();
+
     const [nomeEmpresa, setNomeEmpresa] = useState("");
     const [cnpj, setCnpj] = useState("");
     const [endereco, setEndereco] = useState("");
@@ -73,11 +74,9 @@ export default function CadastroEmpresa() {
                             <TouchableOpacity 
 
                                 onPress={() => {
-
-                                    if(dadosEmpresaCongruentes(nomeEmpresa,cnpj,endereco,tipoEmpresa))
+                                    if(dadosCongruentesEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa))
                                         navegaTela(navigation,'CadastroGestor');
                                     }}
-
                                 style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
                             </TouchableOpacity>             

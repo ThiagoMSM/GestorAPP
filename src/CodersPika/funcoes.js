@@ -12,21 +12,21 @@ export const navegaTela = (navigation, telaAlvo) =>{
 };
 
 //banco de dados:
-export const dadosEmpresaCongruentes = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
-    let irregular = false;
 
-    if (nomeEmpresa === "" || cnpj === "" || endereco === "" || tipoEmpresa === "") {
+export const dadosCongruentesEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
+
+    if (nomeEmpresa === "" || cnpj === "" || endereco === "" || tipoEmpresa === "") { //verifica se tem algo nao preenchido
         alert(camposNaoPreenchidos());
-        irregular = true;
+        return false;
     }
     const empresasReferencia = ref(db, 'Empresas'); 
     const snapshot = await get(empresasReferencia); //pega todos os registros do node Empresas em um vetor        
 
-    if (ValorNaoUnico("cnpj_empresa",snapshot,cnpj)){
+    if (ValorNaoUnico("cnpj_empresa",snapshot,cnpj)){ //verifica se o cnpj já existe no banco
         alert(empresaJaExistente());
-        irregular = true;
+        return false;
     }
-    return irregular;
+    return true; //true quando tem nada de errado
 }
 
 
@@ -37,10 +37,13 @@ export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa)
         alert(empresaJaExistente());
         return;
     }
+
+    const empresasReferencia = ref(db, 'Empresas'); 
+
     const novoNodeEmpresa = push(empresasReferencia); // gera um child node de codigo unico no node empresa (push)
     
     try {
-        await set(novoNodeEmpresa, {
+        await set(novoNodeEmpresa, { // empresasReferencia, id>>>>>>>>>>novoNodeEmpresa[0] = empresasReferencia, novoNodeEmpresa[1] = "5ifdsidf99i3w9i"
             nome_empresa: nomeEmpresa,
             cnpj_empresa: cnpj,
             endereco_empresa: endereco,
