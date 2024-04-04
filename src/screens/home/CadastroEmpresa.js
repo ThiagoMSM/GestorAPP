@@ -84,12 +84,10 @@ export default function CadastroEmpresa() {
 };
 
 async function checaDados(navigation, nomeEmpresa,cnpj,endereco,tipoEmpresa){
-    if(await dadosCongruentesEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)){
+    if(await dadosCongruentesEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa)){//espera pegar tudo antes de mandar pra baixo:
         obtemKeyEmpresa();
         navegaTela(navigation,'CadastroGestor', {nomeEmpresa, cnpj,endereco,tipoEmpresa}); 
-    } //espera pegar tudo antes de mandar pra baixo:
-         
-    
+    } 
 }
 
 const styles = StyleSheet.create({

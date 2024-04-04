@@ -71,8 +71,11 @@ export default function CadastroEmpresa() {
                                 value={Senha}
                             />
                             <TouchableOpacity onPress={async() =>{
-                                await CadastrarGestor(EmailGestor,CPF,Senha, NomeGestor);
-                                await CadastrarEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa );
+                                if (await CadastrarGestor(EmailGestor,CPF,Senha, NomeGestor)) // se conseguiu cadastrar o gestor, cadastra a empresa...
+                                {
+                                    await CadastrarEmpresa(nomeEmpresa,cnpj,endereco,tipoEmpresa );
+                                    navegaTela(navigation,"Login")
+                                }
                             }}  style={styles.btn}>
                                 <Text style={styles.txtBtn}>Cadastrar</Text>
                             </TouchableOpacity>             

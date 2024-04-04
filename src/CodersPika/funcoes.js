@@ -55,15 +55,14 @@ export const obtemKeyEmpresa = () =>{
 export const CadastrarGestor = async (EmailGestor,CPF,Senha, NomeGestor) => {
     if (EmailGestor === "" || CPF === "" || Senha === "" || NomeGestor === "") {
         alert(camposNaoPreenchidos());
-        return;
+        return false;
     }
-
     const LoginsRef = ref(db, 'Logins'); 
     const ForEachLine = await get(LoginsRef); //pega todos os registros do node Empresas
     
     if (ValorNaoUnico('Email', ForEachLine, EmailGestor)) {
         alert(GestorJaExistente());
-        return;
+        return false;
     }
     const novoNodeLogin = push(LoginsRef);
     try {
@@ -79,11 +78,12 @@ export const CadastrarGestor = async (EmailGestor,CPF,Senha, NomeGestor) => {
     } catch (excecao) {
         console.error("Error:", excecao);
     }
+    return true;
 };
-
 export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
-    if (!dadosCongruentesEmpresa(nomeEmpresa, cnpj, endereco, tipoEmpresa))
+    if (!await dadosCongruentesEmpresa(nomeEmpresa, cnpj, endereco, tipoEmpresa))
         return;
+
     try {
         await set(chaveEmpresa, {
             nome_empresa: nomeEmpresa,
@@ -93,7 +93,6 @@ export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa)
         });
 
         alert(LoginGestorEempresaFeito());
-
     } catch (excecao) {
         console.error("Error:", excecao);
     }

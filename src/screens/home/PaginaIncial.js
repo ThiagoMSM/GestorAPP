@@ -55,7 +55,7 @@ export default function PaginaInicial() {
             
             <View style={styles.BtnEntrarView}>
                     <TouchableOpacity onPress={() => navegaTela(navigation,'Login')} style={styles.BtnEntrar}>
-                    <Text style={styles.txtBtn}>Entrar</Text>
+                    <Text style={styles.txtBtn}>Iniciar</Text>
                 </TouchableOpacity>
             </View>
             
