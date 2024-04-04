@@ -66,7 +66,6 @@ export const CadastrarGestor = async (EmailGestor,CPF,Senha, NomeGestor) => {
         return;
     }
     const novoNodeLogin = push(LoginsRef);
-
     try {
         await set(novoNodeLogin, {
             Nome: NomeGestor,
@@ -83,19 +82,8 @@ export const CadastrarGestor = async (EmailGestor,CPF,Senha, NomeGestor) => {
 };
 
 export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa) => {
-    if (nomeEmpresa === "" || cnpj === "" || endereco === "" || tipoEmpresa === "") {
-        alert(camposNaoPreenchidos());
+    if (!dadosCongruentesEmpresa(nomeEmpresa, cnpj, endereco, tipoEmpresa))
         return;
-    }
-    
-    const EmpresasRef = ref(db, 'Empresas'); 
-    const ForEachLine = await get(EmpresasRef); //pega todos os registros do node Empresas
-    
-    if (ValorNaoUnico('cnpj_empresa', ForEachLine, cnpj)) {
-        alert(GestorJaExistente());
-        return;
-    }
-
     try {
         await set(chaveEmpresa, {
             nome_empresa: nomeEmpresa,
