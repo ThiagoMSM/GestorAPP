@@ -13,7 +13,7 @@ import { app } from "../../DB/firebase.js";
 
 const auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-  });
+  }); // teste
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
