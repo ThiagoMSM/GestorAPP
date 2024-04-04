@@ -28,7 +28,7 @@ export default function Login() {
           
                     {/* Titulo e subtitulo */}
                     <View style={styles.divTextTitle}>
-                        <Text style={styles.lblGestorAPP}>
+                        <Text style={styles.lblGestorAPP} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
                             Gestor APP
                         </Text>
                     </View>

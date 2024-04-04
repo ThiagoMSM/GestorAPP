@@ -59,3 +59,27 @@ const cnpjUnico = (snapshot,cnpj) =>{
 /*TODO: mudar a forma de cadastro, não gravar nada no banco de dados por agora, só checar se o cnpj é unico. Se sim, deixa passar
 para a próxima etapa (cadastro de gestor), caso contrário, exibe a msg de erro de cnpj não unico.
 */
+
+
+
+
+//////////////CADASTRAR GESTOR//////////////
+////////////////////////////////////////////////////////////////
+export const CadastrarGestor = async (EmailGestor,CPF,Senha) => {
+    if (EmailGestor === "" || CPF === "" || Senha === "") {
+        alert(camposNaoPreenchidos());
+        return;
+    }
+
+    
+    const EMPRESASRef = ref(db, 'Empresas'); 
+    const snapshot = await get(EMPRESASRef); //pega todos os registros do node Empresas
+    
+    if (cnpjUnico(snapshot,cnpj)) {
+        alert(empresaJaExistente());
+        return;
+    }
+
+}
+
+
