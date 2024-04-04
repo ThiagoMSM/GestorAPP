@@ -7,6 +7,13 @@ import { useNavigation } from '@react-navigation/native';
 import { navegaTela } from '../../servicos/funcoes.js';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+import { db } from "../../DB/firebase.js";
+
+const auth = initializeAuth(db, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+  });
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
@@ -71,7 +78,7 @@ export default function Login() {
                             />
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity /*onPress={() => handlelogin(email,password)}*/ style={styles.BtnEntrar}>
+                            <TouchableOpacity onPress={() => handlelogin(email,password)} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -81,8 +88,6 @@ export default function Login() {
                         <Text style={styles.lblLogTech}>
                                 Cadastre sua empresa e torne-se o gestor clicando no botão abaixo.
                         </Text>
-
-
 
                             {/* Botão de cadastro */}
                             <View style={[styles.BtnCadastrarView, {width:"170%"}] }>
@@ -99,17 +104,16 @@ export default function Login() {
         </View>
     );
 };
-/*
+
 async function handlelogin(email,password) {
     try {
         const auth = getAuth();
         await signInWithEmailAndPassword(auth, email, password);
-        // User logged in successfully, navigate to the next screen
     } catch (error) {
-        Alert.alert('Error', error.message);
+        console.log(error.message);
     }
 };
-*/
+
 
 const styles = StyleSheet.create({
     container: {
