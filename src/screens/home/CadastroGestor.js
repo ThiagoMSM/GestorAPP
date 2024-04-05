@@ -24,8 +24,8 @@ export default function CadastroEmpresa() {
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
   
-                <View style={styles.ViewBtnVoltar}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.btn}>
+                <View style={styles.ViewBtnVoltar} >
+                    <TouchableOpacity style={styles.btn} onPress={() => navegaTela(navigation,'CadastroEmpresa')}>
                     <Text style={styles.txtBtn}>Voltar</Text>
                     </TouchableOpacity>
                 </View>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     },
 
     ViewBtnVoltar: {
-        marginTop: 0,
+        marginTop: -10,
         width: '50%',
         height: 'auto',
     },

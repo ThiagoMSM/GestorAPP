@@ -30,32 +30,30 @@ export default function Login() {
     if (!fontLoaded) {
         return <ActivityIndicator />;
     }
+    const ClearValue = () => {
+        setPassword('');
+        setEmail('');
+      };
 
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-          
+                    
                     {/* Titulo e subtitulo */}
                     <View style={styles.divTextTitle}>
-                        <Text style={styles.lblGestorAPP} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
-                            Gestor APP
+                        <Text style={styles.lblLogin} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
+                           Login
                         </Text>
                     </View>
                     
-                    <View style={styles.divTextSubTitle}>
-                        <Text style={styles.lblLogTech}>
-                            Logística + Tecnologia
-                        </Text>
-                    </View>
-
                     {/* Div do quadrado cinza da tela */}
                     <View style={styles.form}>
                     
                         <View style={styles.cardForm}>
                             {/* Input de email */}
                             <Text style={styles.lblLogTech}>
-                                Já possui uma conta? Entre preenchendo o login abaixo:
+                                Já possui uma conta?
                              </Text>
                             <TextInput
                                 style={styles.input}
@@ -83,13 +81,17 @@ export default function Login() {
                         
                          {/* Texto */}
                         <Text style={styles.lblLogTech}>
-                                Cadastre sua empresa e torne-se o gestor clicando no botão abaixo.
+                                Não possui?
+                        </Text>
+                        <Text style={styles.lblLogTech}>
+                                Se cadastre junto com sua empresa
                         </Text>
 
                             {/* Botão de cadastro */}
                             <View style={[styles.BtnCadastrarView, {width:"170%"}] }>
-                                <TouchableOpacity onPress={() => navegaTela(navigation,'CadastroEmpresa')}
-                                    style={styles.BtnCadastrarEmpresa}>
+                                <TouchableOpacity onPress={() => {
+                                  ClearValue(), navegaTela(navigation,'CadastroEmpresa')
+                                } } style={styles.BtnCadastrarEmpresa}>
                                     <Text style={styles.txtBtn}>Cadastrar Empresa</Text>
                                 </TouchableOpacity>
                             </View>
@@ -123,9 +125,9 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center',
     },
-    lblGestorAPP: {
+    lblLogin: {
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 35,
+        fontSize: 50,
         color: '#fff',
         textAlign: 'center',
     },
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
     form: {
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 50,
+        marginTop: 20,
     },
     cardForm: {
         backgroundColor: 'rgba(217,217,217,0.22)',
