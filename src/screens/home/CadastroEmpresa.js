@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { obtemKeyEmpresa } from '../../servi cos/autenticacao.js';
+import { obtemKeyEmpresa } from '../../servicos/autenticacao.js';
 import { navegaTela } from "../../servicos/funcoes.js";
 import { useNavigation } from '@react-navigation/native';
 
