@@ -24,18 +24,10 @@ export default function CadastroEmpresa() {
                     </TouchableOpacity>
                 </View>
             
-                    <View style={styles.divTextTitle}>
-                        <Text style={styles.lblGestorAPP}>
-                            Gestor APP
-                        </Text>
-                    </View>
-                    <View style={styles.divTextSubTitle}>
-                        <Text style={styles.lblLogTech}>
-                            Logística + Tecnologia
-                        </Text>
-                    </View>
+                   
+           
                     <Text style={styles.lblCadastro}>
-                            Cadastro
+                            Cadastro Empresa
                         </Text>
 
                     <View style={styles.form}>
@@ -50,6 +42,7 @@ export default function CadastroEmpresa() {
                             />
                             <TextInput
                                 style={styles.input}
+                                keyboardType = 'numeric'
                                 placeholder="CNPJ"
                                 placeholderTextColor="#878787"
                                 onChangeText={(text) => setCnpj(text)}
@@ -73,7 +66,7 @@ export default function CadastroEmpresa() {
                             <TouchableOpacity 
                                 onPress= {() => checaDados(navigation,nomeEmpresa,cnpj,endereco,tipoEmpresa)}
                                 style={[styles.btn,{width:"90%",height:"15%"}]}>
-                                <Text style={styles.txtBtn}>Continuar com o cadastro</Text>
+                                <Text style={styles.txtBtnCadastrar}>Continuar</Text>
                             </TouchableOpacity>             
                         </View>
                     </View>
@@ -108,7 +101,7 @@ const styles = StyleSheet.create({
     },
     lblCadastro: {
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 35,
+        fontSize: 30,
         color: '#fff',
         textAlign: 'center',
         marginTop: "2%",
@@ -129,7 +122,7 @@ const styles = StyleSheet.create({
     form: {
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 10,
+        marginTop: 6,
     },
     cardForm: {
         backgroundColor: 'rgba(217,217,217,0.22)',
@@ -170,6 +163,11 @@ const styles = StyleSheet.create({
     },
     txtBtn: {
         fontSize: 20,
+        fontFamily: "JetBrainsMono_400Regular",
+        color: "#FFFFFF",
+    },
+    txtBtnCadastrar: {
+        fontSize: 30,
         fontFamily: "JetBrainsMono_400Regular",
         color: "#FFFFFF",
     },

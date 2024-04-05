@@ -4,6 +4,10 @@ import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fo
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
 import { navegaTela } from '../../servicos/funcoes.js';
+
+
+
+
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
 */
@@ -21,24 +25,25 @@ export default function PaginaInicial() {
         return <ActivityIndicator />;
     }
 
-    const LogoPequenoGestor = require('../../../assets/LogoPequenoGestor.png');
-    return (
+    
+    return ( 
         <View style={styles.container}>
-            <LinearGradient colors={['#F25C05', '#0D0D0D']} style={styles.background}>
+            <LinearGradient colors={['#EF8C34', '#EF8C34']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
         
-            
-          {/* Imagem */}
-           
-          <View style={styles.ImageView}>
-            
-                  <Image
-                    source={LogoPequenoGestor}
-                     style={styles.image}
-                    />
-                                                            
-                </View>
-
+         {/* Titulo e subtitulo */}
+         <View style={styles.divTextTitle}>
+            <Text style={styles.lblGestorAPP} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
+                Gestor APP
+            </Text>
+        </View>
+                    
+      <View style={styles.divTextSubTitle}>
+         <Text style={styles.lblLogTech}>
+            Logística + Tecnologia
+         </Text>
+      </View>
+                    
             <View style={styles.LblTituloView}>
                 <Text style={styles.LblTitulo}>
                     Bem-vindo(a)!
@@ -46,15 +51,26 @@ export default function PaginaInicial() {
             </View>
             <View style={styles.Hr}></View>
 
+
+            <View style={styles.Cardform}>
+
             <View style={styles.LblDescriçãoView}>
                 <Text style={styles.LblDescrição}>
-                    Transfome sua gestão empresarial com o nosso APP! Controle de vendas, 
-                    administração de estoque e muito mais em um só lugar. Experimente agora!
+                    Transfome sua gestão empresarial com o nosso APP! 
                 </Text>
+                
+
             </View>
+
+            </View>
+                <Text style={styles.LblExperimenteAgr}>
+                  Experimente agora!
+                </Text>
+                
+           
             
-            <View style={styles.BtnEntrarView}>
-                    <TouchableOpacity onPress={() => navegaTela(navigation,'Login')} style={styles.BtnEntrar}>
+            <View style={styles.BtnIniciarView}>
+                <TouchableOpacity onPress={() => navegaTela(navigation,'Login')} style={styles.BtnIniciar}>
                     <Text style={styles.txtBtn}>Iniciar</Text>
                 </TouchableOpacity>
             </View>            
@@ -76,60 +92,75 @@ const styles = StyleSheet.create({
         justifyContent: 'top',
         alignItems: 'center',
     },
-    txtBtn: {
-        fontSize: 35,
-        fontFamily: "JetBrainsMono_400Regular",
-        color: "#FFFFFF",
-    },
+  
     ImageView: {
-        width: 280,
-        height: 280,
-        marginTop: 70,
+        height: 160,
+        width: 160,
+        marginTop: 90,
         alignItems: 'center',
         justifyContent: 'center',
         verticalAlign: 'middle'
     },
     image: {
-        marginTop: 40,
+        marginTop: 60,
         marginRight: 5,
         width: 500,
         height: 400,
     },
     LblTitulo: {
-        marginTop: 20,
+        marginTop: 150,
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 35,
+        fontSize: 30,
         color: '#fff',
         textAlign: 'center',
         marginBottom: '10px',
     },
     LblTituloView:{
-    
-        marginTop: 9,
+        
+        marginTop: 60,
     },
     Hr: {
         borderBottomColor: 'white',
         borderBottomWidth: 1,
-        width: '85%',
-        marginVertical: 10, // Espaçamento opcional
+        width: '75%',
+        marginTop: 5,
+        marginBottom: 5,
     },
     LblDescrição: {
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 20,
+        fontSize: 15,
         color: '#fff',
         textAlign: 'center',
-        marginBottom: '10px',
 
     },
-    BtnEntrarView: {
+    LblDescriçãoView: {
+        width: 300,
+        marginLeft: -14,
+    
+        
+    },
+    BtnIniciarView: {
         alignItems: "center",
         width: 250,
         height: 100,
         justifyContent: 'center',
-        marginTop: 20,
+        
     },
-    BtnEntrar: {
-        backgroundColor: "#E04D18",
+    LblExperimenteAgr: {
+        marginTop: 20,
+        fontFamily: 'JetBrainsMono_700Bold',
+        fontSize: 15,
+        color: '#fff',
+        textAlign: 'center',
+        marginBottom: -15,
+    },
+    txtBtn: {
+        fontSize: 25,
+        fontFamily: "JetBrainsMono_400Regular",
+        color: "#EF8C34",
+    },
+    BtnIniciar: {
+        backgroundColor: "#FFF",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 30,
@@ -137,9 +168,40 @@ const styles = StyleSheet.create({
         shadowOpacity: 10,
         shadowRadius: 4,
         elevation: 5,
-        margin: 10,
         width: "90%",
         height: "auto",
         verticalAlign: 'center',
     },
+    
+    Cardform: {
+        backgroundColor: 'rgba(217,217,217,0)',
+        shadowColor: '#000',
+        shadowOpacity: 100,
+        shadowRadius: 10,
+        width: "80%",
+        padding: 18,
+        borderRadius: 30,
+        alignSelf: 'center',
+    },
+    divTextSubTitle: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    lblLogTech: {
+        fontSize: 15,
+        color: '#fff',
+        textAlign: 'center',
+        fontFamily: 'JetBrainsMono_400Regular',
+        marginTop: 5,
+    },
+    lblGestorAPP: {
+        fontFamily: 'JetBrainsMono_700Bold',
+        fontSize: 50,
+        color: '#fff',
+        textAlign: 'center',
+        marginBottom: '10px',
+    },
+    divTextTitle: {
+        marginTop: 140,
+    }
 });
