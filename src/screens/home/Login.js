@@ -14,9 +14,6 @@ import { app } from "../../DB/firebase.js";
 const auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
   }); // teste
-/*
-TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
-*/
 
 export default function Login() {
 
@@ -91,7 +88,8 @@ export default function Login() {
 
                             {/* Botão de cadastro */}
                             <View style={[styles.BtnCadastrarView, {width:"170%"}] }>
-                                <TouchableOpacity onPress={() => navegaTela(navigation,'CadastroEmpresa')} style={styles.BtnCadastrarEmpresa}>
+                                <TouchableOpacity onPress={() => navegaTela(navigation,'CadastroEmpresa')}
+                                    style={styles.BtnCadastrarEmpresa}>
                                     <Text style={styles.txtBtn}>Cadastrar Empresa</Text>
                                 </TouchableOpacity>
                             </View>
