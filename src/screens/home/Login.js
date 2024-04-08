@@ -42,7 +42,7 @@ export default function Login() {
                     
                     {/* Titulo e subtitulo */}
                     <View style={styles.divTextTitle}>
-                        <Text style={styles.lblLogin} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
+                        <Text style={styles.lblLogin}>
                            Login
                         </Text>
                     </View>

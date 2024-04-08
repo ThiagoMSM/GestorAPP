@@ -10,6 +10,7 @@ import { navegaTela } from '../../servicos/funcoes.js';
 
 /*
 TELA DE CADASTRO!!!!!!!!!!!!!!!!!!!!!
+ '#EF8C34', '#EF8C34'
 */
 
 export default function PaginaInicial() {
@@ -25,16 +26,16 @@ export default function PaginaInicial() {
         return <ActivityIndicator />;
     }
 
-    
+   
     return ( 
         <View style={styles.container}>
-            <LinearGradient colors={['#EF8C34', '#EF8C34']} style={styles.background}>
+            <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
         
          {/* Titulo e subtitulo */}
          <View style={styles.divTextTitle}>
             <Text style={styles.lblGestorAPP} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
-                Gestor APP
+                Pequeno Grande Gestor
             </Text>
         </View>
                     
@@ -157,10 +158,10 @@ const styles = StyleSheet.create({
     txtBtn: {
         fontSize: 25,
         fontFamily: "JetBrainsMono_400Regular",
-        color: "#EF8C34",
+        color: "#FFFFFF",
     },
     BtnIniciar: {
-        backgroundColor: "#FFF",
+        backgroundColor: "#e04d18",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 30,
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     },
     lblGestorAPP: {
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 50,
+        fontSize: 40,
         color: '#fff',
         textAlign: 'center',
         marginBottom: '10px',
