@@ -6,11 +6,10 @@ import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
 import { navegaTela } from '../../servicos/funcoes.js';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import { camposNaoPreenchidos, LoginFalha } from '../../mensagens/msg.js';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { app } from "../../DB/firebase.js";
-
 const auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
   }); // teste
@@ -73,7 +72,7 @@ export default function Login() {
                             />
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity onPress={() => handlelogin(email,password,navigation)} style={styles.BtnEntrar}>
+                            <TouchableOpacity onPress={() => logar(email,password,navigation)} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -102,14 +101,22 @@ export default function Login() {
     );
 };
 
-async function handlelogin(email,password,navigation) {
+async function logar(email,password,navigation) {
     try {
         const auth = getAuth();
         await signInWithEmailAndPassword(auth, email, password);
         navegaTela(navigation,'PaginaLogado',email)
-    } catch (error) {
-        alert(error.message);
-        console.log(error.message);
+    } catch (erro) {
+        let a = erro.message;
+
+        if(email === ""|| password === ""){
+            alert(camposNaoPreenchidos());
+            return;
+        }
+        if(a == "Firebase: Error (auth/invalid-email)."){
+            alert(LoginFalha())
+            return
+        }
     }
 };
 

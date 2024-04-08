@@ -18,5 +18,10 @@ export const LoginGestorEempresaFeito= () => {
     return "Empresa e gestor cadastrados com sucesso!";
 };
 
+export const LoginFalha= () => {
+    return "Usuário não encontrado!";
+};
+
+
 
 
