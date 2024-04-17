@@ -83,6 +83,7 @@ export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa)
             nome_empresa: nomeEmpresa,
             cnpj_empresa: cnpj,
             endereco_empresa: endereco,
+            sexo: "anal",
             tipo_Empresa: tipoEmpresa
         });
         alert(LoginGestorEempresaFeito());
@@ -90,3 +91,10 @@ export const CadastrarEmpresa = async (nomeEmpresa, cnpj, endereco, tipoEmpresa)
         console.error("Error:", excecao);
     }
 };
+
+/*
+campos[0]: nomeEmpresa,
+campos[1]: nomeEmpr3545esa,
+campos[2]: sexox,
+campos[3]: hhu
+*/

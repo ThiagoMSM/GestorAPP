@@ -39,7 +39,7 @@ export default function Login() {
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-                    
+           
                     {/* Titulo e subtitulo */}
                     <View style={styles.divTextTitle}>
                         <Text style={styles.lblLogin} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
@@ -73,7 +73,7 @@ export default function Login() {
                             />
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity onPress={() => handlelogin(email,password,navigation)} style={styles.BtnEntrar}>
+                            <TouchableOpacity onPress={() => {ClearValue(), handlelogin(email,password,navigation)}} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -242,7 +242,4 @@ const styles = StyleSheet.create({
         verticalAlign: 'center',
 
     },
-    
-   
-
 });

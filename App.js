@@ -4,7 +4,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from './src/screens/home/Login';
+import Login from './src/screens/signUp/Login';
 import CadastroEmpresa from './src/screens/home/CadastroEmpresa';
 import PaginaInicial from './src/screens/home/PaginaIncial';
 import CadastroGestor from './src/screens/home/CadastroGestor';
@@ -29,7 +29,6 @@ function App() {
     </Stack.Navigator>
     <StatusBar style="auto" />
   </NavigationContainer>
-
     //Thiago é um gostoso
 
   );
