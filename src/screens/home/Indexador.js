@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { navegaTela } from '../../servicos/funcoes.js';
+import { navegaTela,irPraWeb } from '../../servicos/funcoes.js';
 
 export default function Login() {
 
@@ -46,7 +46,7 @@ export default function Login() {
                            
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity onPress={() => irPraWeb()} style={styles.BtnEntrar}>
+                            <TouchableOpacity onPress={() => irPraWeb(endereco)} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>Prosseguir</Text>
                                 </TouchableOpacity>
                             </View>
@@ -58,9 +58,7 @@ export default function Login() {
     );
 };
 
-function irPraWeb(endereco){
-//todo
-}
+
 
 const styles = StyleSheet.create({
     container: {
