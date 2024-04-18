@@ -1,8 +1,13 @@
 import { Linking } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export const navegaTela = (navigation, telaAlvo, params) =>{
     navigation.navigate(telaAlvo, params);
 };
+
+export const voltar = (navigation) => {
+    navigation.goBack();
+}
 
 export const irPraWeb = (endereco) =>{
     const chars = endereco.split('');

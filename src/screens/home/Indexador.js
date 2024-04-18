@@ -20,14 +20,15 @@ export default function Login() {
     if (!fontLoaded) {
         return <ActivityIndicator />;
     }
-    
+    const tipos = ["qr"];
+
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
                     
                     <View style={styles.divTextTitle}>
-                        <Text style={styles.lblLogin} onPress={() => navegaTela(navigation, 'CadastroGestor')}>
+                        <Text style={styles.lblLogin}>
                            Endereço web
                         </Text>
                     </View>
@@ -35,6 +36,11 @@ export default function Login() {
                     {/* Div do quadrado cinza da tela */}
                     <View style={styles.form}>
                     
+                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Scanner',{ tipos: "qr", funcionamento: "web" })} style={styles.BtnEntrar}>
+                        <Text style={styles.txtBtn}>Ler QR Code</Text>
+                    </TouchableOpacity>
+
+
                         <View style={styles.cardForm}>
                             <TextInput
                                 style={styles.input}
@@ -46,7 +52,7 @@ export default function Login() {
                            
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity onPress={() => irPraWeb(endereco)} style={styles.BtnEntrar}>
+                                <TouchableOpacity onPress={() => irPraWeb(endereco)} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>Prosseguir</Text>
                                 </TouchableOpacity>
                             </View>
