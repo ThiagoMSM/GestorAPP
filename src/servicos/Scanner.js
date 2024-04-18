@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { CameraView, Camera } from "expo-camera/next";
 import { useRoute } from '@react-navigation/native';
-import { irPraWeb, voltar } from "./funcoes";
+import { irPraWeb, voltar } from "./Funcoes";
 import { useNavigation } from '@react-navigation/native';
+import {cameraSemPermissao, cameraPermissaoNula} from '../mensagens/Msg';
 
 export default function Scanner(){ //codigo do git do expo
   const [hasPermission, setHasPermission] = useState(null);
@@ -40,10 +41,10 @@ export default function Scanner(){ //codigo do git do expo
   };
 
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>; // fazer style
+    return <Text>{cameraPermissaoNula()}</Text>; // fazer style
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>; // fazer style
+    return <Text>{cameraSemPermissao()}</Text>; // fazer style
   }
   
   return (

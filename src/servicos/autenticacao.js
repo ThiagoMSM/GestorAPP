@@ -1,6 +1,6 @@
 import { ref, push, set, get } from "firebase/database";
-import { db } from "../DB/firebase";
-import { empresaJaExistente, camposNaoPreenchidos, GestorJaExistente, LoginGestorEempresaFeito } from "../mensagens/msg";
+import { db } from "../DB/Firebase";
+import { empresaJaExistente, camposNaoPreenchidos, GestorJaExistente, LoginGestorEempresaFeito } from "../mensagens/Msg";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; // Import Firebase Authentication methods
 
 let chaveEmpresa = 'ValorPadrao';

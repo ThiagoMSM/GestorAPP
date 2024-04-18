@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, ScrollView,StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { pegaDataLogin,pegaDataEmpresa } from "../../servicos/servicosBD";
+import { pegaDataLogin,pegaDataEmpresa } from "../../servicos/ServicosBD";
 
 export default function CadastroEmpresa() {
     const [dataLogin, setDataLogin] = useState(null);

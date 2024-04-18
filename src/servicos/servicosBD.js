@@ -1,5 +1,5 @@
 import { ref, push, set, get } from "firebase/database";
-import { db } from "../DB/firebase";
+import { db } from "../DB/Firebase";
 
 export const pegaDataLogin = async (email) => {
     const LoginsRef = ref(db, 'Logins'); 

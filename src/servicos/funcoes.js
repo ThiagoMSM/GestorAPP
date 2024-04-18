@@ -17,7 +17,8 @@ export const irPraWeb = (endereco) =>{
     let dominios = [];
 
     let dominioInformado = false;
-
+    let https = false;
+    
     for(let i=0; i<chars.length;i++){
         let auxChars = "";
         if(chars[i] == '.'){
@@ -30,17 +31,19 @@ export const irPraWeb = (endereco) =>{
                     break;
             }
             dominios.push("." + auxChars); 
+        }else if (chars[i] == '/' && chars[i+1] == '/'){
+            https = true;
         }
     }
 
     if(!dominioInformado)
-        dominio = ".com";
+        dominio = ".com"; // assumimos tal dominimo, se nao for informado nada... depois mudar pro dominio do azure... tbm ter uma lista 
     else{
         dominios.forEach(dom =>{
             dominio += dom;
         });
     }
 
-    const url = "https://" + enderecoPuro + dominio;
+    const url = https ? enderecoPuro + dominio : url = "https://" + enderecoPuro + dominio;
     Linking.openURL(url);
 }

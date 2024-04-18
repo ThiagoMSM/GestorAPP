@@ -18,5 +18,11 @@ export const LoginGestorEempresaFeito= () => {
     return "Empresa e gestor cadastrados com sucesso!";
 };
 
+export const cameraSemPermissao = () => {
+    return "Para usar a função de câmera, por favor, autorize o uso da mesma";
+}
 
+export const cameraPermissaoNula = () => {
+    return "Pedindo permissão para utilização da câmera";
+}
 
