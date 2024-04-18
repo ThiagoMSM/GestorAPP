@@ -2,8 +2,11 @@ export const empresaJaExistente = () => {
     return "Empresa já cadastrada.\nSe acredita que é um erro, por favor, entre em contato com o nosso suporte";
 };
 
-export const camposNaoPreenchidos= () => {
-    return "Preencha todos os campos antes de continuar";
+export const camposNaoPreenchidos = (plural) => {
+    if(plural)
+        return "Preencha todos os campos antes de continuar";
+    else
+        return "Preencha o campo antes de continuar";
 };
 
 export const empresaCadastroValido= () => {
@@ -26,3 +29,6 @@ export const cameraPermissaoNula = () => {
     return "Pedindo permissão para utilização da câmera";
 }
 
+export const enderecoInvalidoHttps= () =>{
+    return "Endereço inválido";
+}
