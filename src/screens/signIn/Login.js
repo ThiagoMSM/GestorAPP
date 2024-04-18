@@ -7,14 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 import { navegaTela } from '../../servicos/funcoes.js';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
-import { app } from "../../DB/firebase.js";
-
-const auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-  }); // teste
-
 export default function Login() {
 
     const navigation = useNavigation();
@@ -34,7 +26,6 @@ export default function Login() {
         setPassword('');
         setEmail('');
       };
-
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
@@ -73,28 +64,11 @@ export default function Login() {
                             />
                            {/* Botão de Entrar */}
                             <View style={styles.BtnEntrarView}>
-                            <TouchableOpacity onPress={() => {ClearValue(), handlelogin(email,password,navigation)}} style={styles.BtnEntrar}>
+                            <TouchableOpacity onPress={() => {ClearValue(), logar(email,password,navigation)}} style={styles.BtnEntrar}>
                                     <Text style={styles.txtBtn}>entrar</Text>
                                 </TouchableOpacity>
                             </View>
-                        </View>
-                        
-                         {/* Texto */}
-                        <Text style={styles.lblLogTech}>
-                                Não possui?
-                        </Text>
-                        <Text style={styles.lblLogTech}>
-                                Se cadastre junto com sua empresa
-                        </Text>
-
-                            {/* Botão de cadastro */}
-                            <View style={[styles.BtnCadastrarView, {width:"170%"}] }>
-                                <TouchableOpacity onPress={() => {
-                                  ClearValue(), navegaTela(navigation,'CadastroEmpresa')
-                                } } style={styles.BtnCadastrarEmpresa}>
-                                    <Text style={styles.txtBtn}>Cadastrar Empresa</Text>
-                                </TouchableOpacity>
-                            </View>
+                        </View>                         
                     </View>
                 </ScrollView>
             </LinearGradient>
@@ -102,7 +76,7 @@ export default function Login() {
     );
 };
 
-async function handlelogin(email,password,navigation) {
+async function logar(email,password,navigation) {
     try {
         const auth = getAuth();
         await signInWithEmailAndPassword(auth, email, password);
@@ -112,7 +86,6 @@ async function handlelogin(email,password,navigation) {
         console.log(error.message);
     }
 };
-
 
 const styles = StyleSheet.create({
     container: {

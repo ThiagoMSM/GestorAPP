@@ -70,7 +70,7 @@ export default function PaginaInicial() {
            
             
             <View style={styles.BtnIniciarView}>
-                <TouchableOpacity onPress={() => navegaTela(navigation,'Login')} style={styles.BtnIniciar}>
+                <TouchableOpacity onPress={() => navegaTela(navigation,'Indexador')} style={styles.BtnIniciar}>
                     <Text style={styles.txtBtn}>Iniciar</Text>
                 </TouchableOpacity>
             </View>            

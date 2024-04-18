@@ -4,11 +4,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from './src/screens/signUp/Login';
-import CadastroEmpresa from './src/screens/home/CadastroEmpresa';
+import Login from './src/screens/signIn/Login';
 import PaginaInicial from './src/screens/home/PaginaIncial';
-import CadastroGestor from './src/screens/home/CadastroGestor';
 import PaginaLogado from './src/screens/home/PaginaLogado';
+import Indexador from './src/screens/home/Indexador';
 const Stack = createStackNavigator();
 
 //npx expo install react-native-gesture-handler
@@ -22,9 +21,8 @@ function App() {
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="PaginaInicial" component={PaginaInicial} options={{ headerShown: false }}/>
+      <Stack.Screen name="Indexador" component={Indexador} options={{ headerShown: false }}/>
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/> 
-      <Stack.Screen name="CadastroEmpresa" component={CadastroEmpresa} options={{ headerShown: false }}/>
-      <Stack.Screen name="CadastroGestor" component={CadastroGestor} options={{ headerShown: false }}/>
       <Stack.Screen name="PaginaLogado" component={PaginaLogado} options={{ headerShown: false }}/>
     </Stack.Navigator>
     <StatusBar style="auto" />
