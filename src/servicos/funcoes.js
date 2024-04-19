@@ -9,6 +9,17 @@ export const voltar = (navigation) => {
     navigation.goBack();
 }
 
+export const limparCampo = (setStates) => { //espera array de campos ou setStates
+    if (!Array.isArray(setStates)){
+        setStates(""); 
+        return;
+    }
+    setStates.forEach(state =>{
+        state("");
+    });
+    // TODO
+}
+
 export const irPraWeb = (endereco) =>{ // talvez mude tudo isso pra um axios da vida, mas por enquanto ta sussa
 
     if(endereco === ""){

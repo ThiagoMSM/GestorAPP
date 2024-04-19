@@ -19,7 +19,6 @@ export default function Scanner(){ //codigo do git do expo
    else 
     tiposArray = [tipos];
 
-  console.log(tiposArray)
   useEffect(() => {
     const getCameraPermissions = async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
