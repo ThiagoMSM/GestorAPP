@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, BackHandler } from "react-native"; // Updated import
 import { CameraView, Camera } from "expo-camera/next";
 import { useRoute } from '@react-navigation/native';
 import { irPraWeb, voltar } from "./Funcoes";
 import { useNavigation } from '@react-navigation/native';
-import {cameraSemPermissao, cameraPermissaoNula} from '../mensagens/Msg';
+import { cameraSemPermissao, cameraPermissaoNula } from '../mensagens/Msg';
 
-export default function Scanner(){ //codigo do git do expo
-  const [hasPermission, setHasPermission] = useState(null);
+export default function Scanner() {  //codigo do git modificado
+  const [hasPermission, setHasPermission] = useState(null); 
   const [scanned, setScanned] = useState(false);
   const navigation = useNavigation();
 
   const route = useRoute();
-  const {tipos,funcionamento} = route.params;
+  const { tipos, funcionamento } = route.params;
   let tiposArray;
   if (Array.isArray(tipos)) 
     tiposArray = tipos;
-   else 
+  else 
     tiposArray = [tipos];
 
   useEffect(() => {
@@ -26,14 +26,32 @@ export default function Scanner(){ //codigo do git do expo
     };
 
     getCameraPermissions();
+
+    // Cleanup function
+    return () => {
+      setHasPermission(null); // Reset permission state
+    };
   }, []);
+
+  useEffect(() => {
+    const handleBackButton = () => {
+      voltar(navigation);
+      return true; // Prevent default back button behavior
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove(); // Cleanup back button listener
+  }, [navigation]);
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
 
-    if(funcionamento === "web")
-    {
-        irPraWeb(data)
+    if (funcionamento === "web") {
+      irPraWeb(data);
     }
     voltar(navigation);
     //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
@@ -45,7 +63,7 @@ export default function Scanner(){ //codigo do git do expo
   if (hasPermission === false) {
     return <Text>{cameraSemPermissao()}</Text>; // fazer style
   }
-  
+
   return (
     <View style={styles.container}>
       <CameraView

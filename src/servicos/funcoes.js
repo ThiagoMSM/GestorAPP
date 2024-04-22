@@ -20,9 +20,21 @@ export const limparCampo = (setStates) => { //espera array de campos ou setState
     // TODO
 }
 
+export const CheckCamposVazios = (campos) =>{
+    console.log(campos);
+    if(!Array.isArray(campos)) // se só foi informado um campo
+        return campos === "";
+
+    for(let i=0; i<campos.length;i++){ // se foi informado mais de um campo, looping para checar todos
+        if(campos[i] === "")
+            return true
+    }
+    return false;
+}
+
 export const irPraWeb = (endereco) =>{ // talvez mude tudo isso pra um axios da vida, mas por enquanto ta sussa
 
-    if(endereco === ""){
+    if(CheckCamposVazios(endereco)){
         alert(camposNaoPreenchidos(false));
         return;
     }
