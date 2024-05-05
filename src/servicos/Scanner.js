@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, BackHandler } from "react-native"; // Updated import
 import { CameraView, Camera } from "expo-camera/next";
 import { useRoute } from '@react-navigation/native';
-import { irPraWeb, voltar } from "./Funcoes";
+import { irPraWeb, voltar } from "./funcoes";
 import { useNavigation } from '@react-navigation/native';
+
 import { cameraSemPermissao, cameraPermissaoNula } from '../mensagens/Msg';
 
 export default function Scanner() {  //codigo do git modificado

@@ -1,196 +1,283 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, ScrollView, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { navegaTela,irPraWeb,limparCampo } from '../../servicos/Funcoes.js';
+import { navegaTela,irPraWeb,limparCampo } from '../../servicos/funcoes';
+import * as NavigationBar from 'expo-navigation-bar';
+import * as Animatable from 'react-native-animatable';
 
-export default function Login() {
+import IconUrl from '../../../assets/IconURL2.png';
+import PngEntragador from '../../../assets/entregador.png';
+import PngScannerQRCODE from '../../../assets/qr-code.png';
 
+export default function Indexador() {
+    NavigationBar.setVisibilityAsync("hidden");
     const navigation = useNavigation();
-
     const [fontLoaded] = useFonts({
         JetBrainsMono_400Regular,
         JetBrainsMono_700Bold
     });
-
     const [endereco, setEndereco] = useState('');
-
     if (!fontLoaded) {
         return <ActivityIndicator />;
     }
 
+    const IconVoltar = () => {
+        this.viewRef.fadeOutLeft(500).then(() => {
+          // Navega para outra tela
+          navigation.navigate('PaginaInicial');
+        });
+      };
     return (
-        <View style={styles.container}>
-            <LinearGradient colors={['#e04d18', '#1e1e1e']} style={styles.background}>
-                <ScrollView contentContainerStyle={styles.scrollContent}>
+        <LinearGradient colors={['#f8c6a3', '#e04d18', '#1e1e1e']} style={styles.background}>
+            <View style={styles.container}>
                     
-                    <View style={styles.divTextTitle}>
-                        <Text style={styles.lblLogin}>
-                           Endereço web
+                <TouchableOpacity onPress={IconVoltar} style={styles.BtnViewVoltar}>
+                    <Animatable.View ref={(ref) => (this.viewRef = ref)} animation={'fadeInLeft'} delay={500} >
+                        <Image
+                            source={require('../../../assets/IconBox.png')}
+                            style={styles.IconImage}
+                        />
+                    </Animatable.View>
+                </TouchableOpacity>
+
+
+                <View style={styles.DivContainerSuperior}>
+                     {/* Titulo e subtitulo */}
+                        <Text style={styles.lblPGG}>
+                            PGG
                         </Text>
+
+                        <Text style={styles.lblNomeApp}>
+                           Pequeno Grande Gestor
+                        </Text>
+                </View>       
+
+
+
+                <View style={styles.Cardform}>
+                    <View style={styles.ViewIconURL}>
+                        <Image
+                            source={IconUrl}
+                            style={styles.IconImageURL}
+                        />
                     </View>
-                    
-                    {/* Div do quadrado cinza da tela */}
-                    <View style={styles.form}>
-                    
-                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Scanner',{ tipos: "qr", funcionamento: "web" })} style={styles.BtnEntrar}>
-                        <Text style={styles.txtBtn}>Ler QR Code</Text>
-                    </TouchableOpacity>
+                    <TextInput
+                        style={styles.InputUrl}
+                        placeholder="Nome do endereço WEB"
+                        placeholderTextColor="#rgba(255, 255, 255, 0.7)"
+                        onChangeText={(text) => setEndereco(text)}
+                        value={endereco}
+                    />       
+                    <View style={styles.BorderHr}><View style={styles.Hr}></View></View>
 
 
-                        <View style={styles.cardForm}>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Nome do endereço web"
-                                placeholderTextColor="#878787"
-                                onChangeText={(text) => setEndereco(text)}
-                                value={endereco}
+                    {/* Botão de Entrar */}
+                    <View style={styles.BtnProsseguirView}>
+                        <TouchableOpacity onPress={() => [limparCampo(setEndereco), irPraWeb(endereco)]} style={styles.BtnProsseguir}>
+                            <Text style={styles.txtBtn}>Prosseguir</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>         
+
+                
+                  
+
+                <View style={styles.BtnIniciarView}>
+                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Scanner',{ tipos: "qr", funcionamento: "web" })} style={styles.BtnIniciar}>
+                            <Image
+                                source={PngScannerQRCODE}
+                                style={styles.IconQrCode}
                             />
-                           
-                           {/* Botão de Entrar */}
-                            <View style={styles.BtnEntrarView}>
-                                <TouchableOpacity onPress={() => [limparCampo(setEndereco), irPraWeb(endereco)]} style={styles.BtnEntrar}>
-                                    <Text style={styles.txtBtn}>Prosseguir</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>                         
-                    </View>
-                </ScrollView>
+                        <Text style={styles.txtBtnQrCode}>Ler QR Code</Text>
+                    </TouchableOpacity>
+                </View>                
+
+
+                </View>
             </LinearGradient>
-        </View>
     );
 };
 
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     background: {
         flex: 1,
     },
-    scrollContent: {
-        flexGrow: 1,
-        justifyContent: 'center',
+    container: {
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'top',
+        alignItems: 'center',
     },
-    lblLogin: {
+    DivContainerSuperior: {
+        display: 'flex',
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: -10,
+    },
+    lblPGG: {
+        marginTop: 50,
+        fontFamily: 'JetBrainsMono_700Bold',
+        fontSize: 100,
+        color: '#fff',
+        marginBottom: 0,
+       
+    },
+    BtnViewVoltar: {
+        
+        width: "100%",
+        height: 100,
+        marginBottom: -70,
+        marginTop: 40,
+        marginLeft: -10,
+    },
+    ViewImagem: {
+        
+    },
+    IconImage: {
+        width: 100,
+        height: 100,
+    },
+    ViewIconURL:{
+        display: 'inline-block',
+        width: 30,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: -35,
+        marginLeft: 0, 
+        zIndex: 1,
+    },
+    IconImageURL:{
+        width: 80,
+        height: 80,
+        
+    },
+    ViewIconEntregador: {
+        display: 'inline-block',
+        width: 130,
+        height: 130,
+        marginTop: -30,
+    },
+    IconEntregador: {
+        width: 130,
+        height: 130,
+    },
+    lblNomeApp:{
+        fontFamily: 'JetBrainsMono_400Regular',
+        fontSize: 10,
+        color: '#fff',
+        textAlign: 'center',
+        marginTop: -20,
+    },
+    lblLogTech: {
+        fontFamily: 'JetBrainsMono_400Regular',
+        fontSize: 20,
+        color: '#fff',
+        textAlign: 'center',
+        marginTop: 15,
+    },
+    ViewBemVindo:{
+        marginTop: 50,
+    },
+    LblBemVindo: {
         fontFamily: 'JetBrainsMono_700Bold',
         fontSize: 50,
         color: '#fff',
         textAlign: 'center',
+
     },
-    divTextTitle: {
-        marginTop: "15%",
+    Cardform: {
+        justifyContent: 'center',
+        marginTop: 90,
+        width: 280,
     },
-    divTextSubTitle: {
-        alignItems: "center",
-        justifyContent: "center",
+    InputUrl: {
+        marginLeft: 50,
+        fontSize: 17,
+        color: 'white',
     },
-    lblLogTech: {
-        fontSize: 15,
-        color: '#fff',
-        textAlign: 'center',
-        fontFamily: 'JetBrainsMono_400Regular',
+    Hr: {
+        backgroundColor: 'white',
+        width: '100%',
+        height: 5,
         marginTop: 5,
+        marginBottom: 5,
+        borderRadius: 50,
     },
-    form: {
+   
+    ViewEsqueciSenha: {
+        fontFamily: 'JetBrainsMono_700Bold',
+        alignItems: "flex-end",
+        marginTop: 5,
+    },  
+    LblEsqueciSenha: {
+        color: 'rgba(240, 240, 240, 0.8)',
+        fontSize: 15,
+    },  
+    BtnIniciarView: {
+        alignItems: "center",
+        justifyContent: 'center',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 2,
+        marginTop: 100,
+    },
+    BtnProsseguirView:{
+        alignItems: "center",
+        justifyContent: 'center',
+        borderRadius: 10,
+        marginTop: 10,
+    },
+    BtnProsseguir: {
+        backgroundColor: "#FFFF",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 20,
-    },
-    cardForm: {
-        backgroundColor: 'rgba(217,217,217,0.22)',
-        shadowColor: '#000',
-        shadowOpacity: 3,
-        shadowRadius: 10,
-        width: "80%",
-        padding: 18,
-        borderRadius: 30,
-        alignSelf: 'center',
-    },
-    input: {
-        backgroundColor: "white",
-        width: "90%",
-        padding: 12,
-        paddingLeft: 20,
-        borderRadius: 30,
-        fontFamily: "JetBrainsMono_400Regular",
-        fontSize: 20,
-        margin: 18,
-        shadowColor: "#000",
-        shadowOpacity: 10,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    btn: {
-        backgroundColor: "#E04D18",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 30,
-        shadowColor: "#000",
-        shadowOpacity: 10,
-        shadowRadius: 4,
-        elevation: 5,
-        margin: 15,
-        width: "55%",
-        height: 40,
         verticalAlign: 'center',
+        borderRadius: 10,
+        width: 130,
+        height: 50,
     },
+
     txtBtn: {
+        fontSize: 15,
+        fontFamily: "JetBrainsMono_400Regular",
+        color: "#e04d18",
+    },
+    BtnIniciar: {
+        backgroundColor: "#FFFF",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: 'row',
+        verticalAlign: 'center',
+        shadowColor: "#000",
+        shadowOpacity: 10,
+        shadowRadius: 4,
+        elevation: 5,
+        
+        borderRadius: 10,
+        width: 250,
+        height: 80,
+    },
+    LblCadastrar: {
+        color: 'white',
+        marginTop: 10,
+    },
+    IconQrCode: {
+        marginLeft: -20,
+        width: 70,
+        height: 70,
+    },
+    txtBtnQrCode:{
+        marginLeft: 10,
         fontSize: 20,
         fontFamily: "JetBrainsMono_400Regular",
-        color: "#FFFFFF",
+        color: "#e04d18",
     },
-    txtEsqueceu: {
-        fontFamily: "JetBrainsMono_400Regular",
-        color: "#FFFFFF",
-        textDecorationLine: "underline",
-        marginTop: -10,
-        fontSize: 12,
-    },
-    ViewBtnVoltar: {
-        marginTop: -120,
-        width: '50%',
-        height: 'auto',
-
-
-    },
-    BtnEntrarView: {
-        alignItems: "center",
-    },
-    BtnCadastrarView: {
-        alignItems: "center",
-    },
-    BtnEntrar: {
-        backgroundColor: "#E04D18",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 30,
-        shadowColor: "#000",
-        shadowOpacity: 10,
-        shadowRadius: 4,
-        elevation: 5,
-        margin: 10,
-        width: "55%",
-        height: 40,
-        verticalAlign: 'center',
-    },
-    BtnCadastrarEmpresa: {
-        backgroundColor: "#E04D18",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 30,
-        shadowColor: "#000",
-        shadowOpacity: 10,
-        shadowRadius: 4,
-        elevation: 5,
-        margin: 10,
-        width: "45%",
-        height: 40,
-        verticalAlign: 'center',
-
-    },
+ 
 });

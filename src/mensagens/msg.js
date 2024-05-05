@@ -32,3 +32,6 @@ export const cameraPermissaoNula = () => {
 export const enderecoInvalidoHttps= () =>{
     return "Endereço inválido";
 }
+export const LoginFalha= () =>{
+    return "Falha ao logar";
+}
