@@ -5,8 +5,10 @@ import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fo
 import { useFonts } from "expo-font";
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { navegaTela } from "./Funcoes";
 import * as NavigationBar from 'expo-navigation-bar';
 import axios from "axios";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function Consulta() {
     NavigationBar.setVisibilityAsync("hidden");
@@ -26,7 +28,7 @@ export default function Consulta() {
     }
 
     useEffect(() => {
-        const pegaDados = async () => { // função existe para separar async do useEffect...
+        const pegaDados = async () => {
             let CodigoParse;
             let codigo;
             try {
@@ -35,6 +37,7 @@ export default function Consulta() {
                 console.log(codigo);
             } catch (error) {
                 console.error("Erro no parse: ", error);
+                setDados("Nenhum dado encontrado");
                 CodigoParse = null;
                 return;
             }
@@ -43,53 +46,54 @@ export default function Consulta() {
                 const response = await axios.post('http://pggzettav3.mooo.com/api/index.php', {
                     funcao: 'consultarProdutoTODOPorId',
                     senha: '@7h$Pz!q2X^vR1&K',
-                    id: 1
+                    id: codigo
                 });
-                if (response.data?.message == "Nenhum dado encontrado") {
+                if (response.data?.message === "Nenhum dado encontrado") {
                     setDados("Nenhum dado encontrado");
                 } else {
                     setDados(response.data);
                 }
             } catch (error) {
                 console.error(CodigoParse);
-                console.error("deu ruim: " + error); // log para sabermos qual foi o erro
+                console.error("Erro na requisição: " + error);
             }
         };
-        pegaDados(); //chama a função
+        pegaDados();
     }, []);
 
     const renderDados = () => {
         if (typeof dados === 'string') {
-            return <Text>{dados}</Text>;
+            return <Text style={styles.errorText}>{dados}</Text>;
         }
 
         if (dados) {
             return Object.keys(dados[0]).map((key) => (
-                <View key={key} style={styles.dadosContainer}>
+                <View key={key} style={styles.dadosItem}>
                     <Text style={styles.dadosChave}>{key}:</Text>
                     <Text style={styles.dadosValor}>{dados[0][key] ?? "Não disponível"}</Text>
                 </View>
             ));
         }
 
-        return <Text>Carregando...</Text>;
+        return <Text style={styles.loadingText}>Carregando...</Text>;
     };
 
     return (
-        <LinearGradient colors={['#f8c6a3', '#e04d18', '#1e1e1e']} style={styles.background}>
+        <LinearGradient colors={['#e39f6f', '#e04d18']} style={styles.background}>
             <View style={styles.container}>
-                <TouchableOpacity style={styles.botaoVoltar} onPress={() => navigation.goBack()}>
-                    <Text style={styles.textoBotao}>Voltar</Text>
-                </TouchableOpacity>
-                <View style={styles.DivContainerSuperior}>
-                    <View style={styles.objetoTransparente} />
-                    <Text style={styles.titulo}>CONSULTA</Text>
-                    {renderDados()}
-                </View>
+                <ScrollView contentContainerStyle={styles.scrollContainer}>
+                    <TouchableOpacity style={styles.botaoVoltar} onPress={() => navegaTela(navigation, 'Indexador')}>
+                        <Text style={styles.textoBotao}>Voltar</Text>
+                    </TouchableOpacity>
+                    <View style={styles.DivContainerSuperior}>
+                        <Text style={styles.titulo}>CONSULTA</Text>
+                        {renderDados()}
+                    </View>
+                </ScrollView>
             </View>
         </LinearGradient>
     );
-};
+}
 
 const styles = StyleSheet.create({
     background: {
@@ -97,62 +101,71 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center', 
-        alignItems: 'center',     
+    },
+    scrollContainer: {
+        paddingBottom: 40, // Added padding to make scrolling smoother
+        paddingHorizontal: 20,
     },
     DivContainerSuperior: {
+        marginTop: 60,
         alignItems: "center",
-        justifyContent: "center",
-        width: '80%',
-        position: 'relative',
-    },
-    objetoTransparente: {
-        position: 'absolute', 
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0, 
-        backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-        borderRadius: 10, 
-        zIndex: -1, 
+        justifyContent: "flex-start",
+        width: '100%',
     },
     titulo: {
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 35, 
+        fontSize: 35,
         color: '#fff',
-        marginBottom: 20, 
-        textAlign: 'center', 
+        marginBottom: 20,
+        textAlign: 'center',
     },
-    dadosContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between', 
-        width: '100%', 
-        marginVertical: 8, 
+    dadosItem: {
+        width: '100%',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Transparent background to separate items
+        borderRadius: 5,
+        marginVertical: 5,
+        padding: 15, // Added padding to give some spacing
     },
     dadosChave: {
         fontFamily: 'JetBrainsMono_700Bold',
-        fontSize: 18, 
+        fontSize: 18,
         color: '#fff',
-        textAlign: 'left', 
+        textAlign: 'left',
+        marginBottom: 5, // Add a bit of space between key and value
     },
     dadosValor: {
         fontFamily: 'JetBrainsMono_400Regular',
-        fontSize: 18, 
+        fontSize: 16,
         color: '#fff',
-        textAlign: 'right',
+        textAlign: 'left', // Align left for better readability
+        flexWrap: 'wrap',  // Ensure long text wraps around
     },
     botaoVoltar: {
-        position: 'absolute',
-        top: 40, // Distância do topo
-        left: 20, // Distância da esquerda
+        position: 'relative',
+        top: 50, 
         padding: 10,
-        backgroundColor: 'rgba(224, 77, 24, 0.8)', // Cor com leve transparência
+        width: "30%",
+        backgroundColor: 'rgba(224, 77, 24, 0.8)',
         borderRadius: 5,
         alignItems: 'center',
+        zIndex: 10, // Ensures the button stays on top
     },
     textoBotao: {
         fontFamily: 'JetBrainsMono_700Bold',
         fontSize: 18,
         color: '#fff',
+    },
+    loadingText: {
+        fontFamily: 'JetBrainsMono_400Regular',
+        fontSize: 16,
+        color: '#fff',
+        marginTop: 20,
+    },
+    errorText: {
+        fontFamily: 'JetBrainsMono_700Bold',
+        fontSize: 16,
+        color: 'red',
+        marginTop: 20,
+        textAlign: 'center',
     },
 });
