@@ -9,6 +9,7 @@ import Login from './src/screens/SingIn/Login';
 import PaginaLogado from './src/screens/home/PaginaLogado';
 import Indexador from './src/screens/home/Indexador';
 import Scanner from './src/servicos/Scanner';
+import Consulta from './src/servicos/Consulta';
 //import CadastroEmpresa from './src/screens/SingUp/CadastroEmpresa';
 //import CadastroGestor from './src/screens/SingUp/CadastroGestor';
 const Stack = createStackNavigator();
@@ -18,10 +19,10 @@ const Stack = createStackNavigator();
 //npm install @react-navigation/native @react-navigation/stack
 //npm install @react-native-async-storage/async-storage 
 //npm install react-native-svg
-//expo-camera/next
+//npm install expo-camera
 //npx expo install expo-navigation-bar
-
-
+//npx expo install expo-font
+//npm i axios
 function App(){
   
 
@@ -34,6 +35,7 @@ function App(){
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/> 
       <Stack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }}/> 
       <Stack.Screen name="PaginaLogado" component={PaginaLogado} options={{ headerShown: false }}/>
+      <Stack.Screen name="Consulta" component={Consulta} options={{ headerShown: false }}/>
       {/* <Stack.Screen name="CadastroEmpresa" component={CadastroEmpresa} options={{ headerShown: false }}/> */}
       {/* <Stack.Screen name="CadastroGestor" component={CadastroGestor} options={{ headerShown: false }}/> */}
     </Stack.Navigator>

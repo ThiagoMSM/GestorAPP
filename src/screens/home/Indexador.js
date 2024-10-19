@@ -4,12 +4,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { navegaTela,irPraWeb,limparCampo } from '../../servicos/funcoes';
+import { navegaTela } from '../../servicos/Funcoes';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Animatable from 'react-native-animatable';
 
 import IconUrl from '../../../assets/IconURL2.png';
-import PngEntragador from '../../../assets/entregador.png';
 import PngScannerQRCODE from '../../../assets/qr-code.png';
 
 export default function Indexador() {
@@ -26,14 +25,14 @@ export default function Indexador() {
 
     const IconVoltar = () => {
         this.viewRef.fadeOutLeft(500).then(() => {
-          // Navega para outra tela
-          navigation.navigate('PaginaInicial');
+            // Navega para outra tela
+            navigation.navigate('PaginaInicial');
         });
-      };
+    };
     return (
         <LinearGradient colors={['#f8c6a3', '#e04d18', '#1e1e1e']} style={styles.background}>
             <View style={styles.container}>
-                    
+
                 <TouchableOpacity onPress={IconVoltar} style={styles.BtnViewVoltar}>
                     <Animatable.View ref={(ref) => (this.viewRef = ref)} animation={'fadeInLeft'} delay={500} >
                         <Image
@@ -43,66 +42,44 @@ export default function Indexador() {
                     </Animatable.View>
                 </TouchableOpacity>
 
-
                 <View style={styles.DivContainerSuperior}>
-                     {/* Titulo e subtitulo */}
-                        <Text style={styles.lblPGG}>
-                            PGG
-                        </Text>
+                    {/* Titulo e subtitulo */}
+                    <Text style={styles.lblPGG}>
+                        PGG
+                    </Text>
 
-                        <Text style={styles.lblNomeApp}>
-                           Pequeno Grande Gestor
-                        </Text>
-                </View>       
-
-
-
-                <View style={styles.Cardform}>
-                    <View style={styles.ViewIconURL}>
-                        <Image
-                            source={IconUrl}
-                            style={styles.IconImageURL}
-                        />
-                    </View>
-                    <TextInput
-                        style={styles.InputUrl}
-                        placeholder="Nome do endereço WEB"
-                        placeholderTextColor="#rgba(255, 255, 255, 0.7)"
-                        onChangeText={(text) => setEndereco(text)}
-                        value={endereco}
-                    />       
-                    <View style={styles.BorderHr}><View style={styles.Hr}></View></View>
-
-
-                    {/* Botão de Entrar */}
-                    <View style={styles.BtnProsseguirView}>
-                        <TouchableOpacity onPress={() => [limparCampo(setEndereco), irPraWeb(endereco)]} style={styles.BtnProsseguir}>
-                            <Text style={styles.txtBtn}>Prosseguir</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                </View>         
-
-                
-                  
+                    <Text style={styles.lblNomeApp}>
+                        Pequeno Grande Gestor
+                    </Text>
+                </View>
 
                 <View style={styles.BtnIniciarView}>
-                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Scanner',{ tipos: "qr", funcionamento: "web" })} style={styles.BtnIniciar}>
-                            <Image
-                                source={PngScannerQRCODE}
-                                style={styles.IconQrCode}
-                            />
-                        <Text style={styles.txtBtnQrCode}>Ler QR Code</Text>
+                    <Text style={styles.lblFuncionalidades}>
+                        Funcionalidades:
+                    </Text>
+                    <View style={{ height: 10 }} />
+                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Scanner', { tipos: "qr", funcionamento: "consulta", msg: "Alinhe o código QR" })} style={styles.BtnIniciar}>
+                        <Image
+                            source={PngScannerQRCODE}
+                            style={styles.IconQrCode}
+                        />
+                        <Text style={styles.txtBtnQrCode}>Consultar Produto</Text>
                     </TouchableOpacity>
-                </View>                
-
-
+                    <View style={{ height: 30 }} />
+                    <TouchableOpacity onPress={() => navegaTela(navigation, 'Scanner', { tipos: "qr", funcionamento: "web", msg: "Alinhe o código de barras", tamanhoX: 300 })} style={styles.BtnIniciar}>
+                        <Image
+                            source={PngScannerQRCODE}
+                            style={styles.IconQrCode}
+                        />
+                        <Text style={[styles.txtBtnQrCode, {maxWidth: "70%"}]}>Consultar Código de barras</Text>
+                    </TouchableOpacity>
                 </View>
-            </LinearGradient>
+
+
+            </View>
+        </LinearGradient>
     );
 };
-
-
 
 const styles = StyleSheet.create({
     background: {
@@ -126,10 +103,16 @@ const styles = StyleSheet.create({
         fontSize: 100,
         color: '#fff',
         marginBottom: 0,
-       
+
+    },
+    lblFuncionalidades: {
+        fontFamily: 'JetBrainsMono_400Regular',
+        fontSize: 20,
+        color: '#fff',
+        textAlign: 'center'
     },
     BtnViewVoltar: {
-        
+
         width: "100%",
         height: 100,
         marginBottom: -70,
@@ -137,26 +120,26 @@ const styles = StyleSheet.create({
         marginLeft: -10,
     },
     ViewImagem: {
-        
+
     },
     IconImage: {
         width: 100,
         height: 100,
     },
-    ViewIconURL:{
+    ViewIconURL: {
         display: 'inline-block',
         width: 30,
         height: 30,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: -35,
-        marginLeft: 0, 
+        marginLeft: 0,
         zIndex: 1,
     },
-    IconImageURL:{
+    IconImageURL: {
         width: 80,
         height: 80,
-        
+
     },
     ViewIconEntregador: {
         display: 'inline-block',
@@ -168,7 +151,7 @@ const styles = StyleSheet.create({
         width: 130,
         height: 130,
     },
-    lblNomeApp:{
+    lblNomeApp: {
         fontFamily: 'JetBrainsMono_400Regular',
         fontSize: 10,
         color: '#fff',
@@ -182,7 +165,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 15,
     },
-    ViewBemVindo:{
+    ViewBemVindo: {
         marginTop: 50,
     },
     LblBemVindo: {
@@ -210,16 +193,16 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 50,
     },
-   
+
     ViewEsqueciSenha: {
         fontFamily: 'JetBrainsMono_700Bold',
         alignItems: "flex-end",
         marginTop: 5,
-    },  
+    },
     LblEsqueciSenha: {
         color: 'rgba(240, 240, 240, 0.8)',
         fontSize: 15,
-    },  
+    },
     BtnIniciarView: {
         alignItems: "center",
         justifyContent: 'center',
@@ -228,7 +211,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 100,
     },
-    BtnProsseguirView:{
+    BtnProsseguirView: {
         alignItems: "center",
         justifyContent: 'center',
         borderRadius: 10,
@@ -259,9 +242,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 10,
         shadowRadius: 4,
         elevation: 5,
-        
+
         borderRadius: 10,
-        width: 250,
+        width: 300,
         height: 80,
     },
     LblCadastrar: {
@@ -273,11 +256,11 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
     },
-    txtBtnQrCode:{
+    txtBtnQrCode: {
         marginLeft: 10,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: "JetBrainsMono_400Regular",
         color: "#e04d18",
     },
- 
+
 });

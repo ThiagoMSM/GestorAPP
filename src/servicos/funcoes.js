@@ -1,5 +1,6 @@
 import { Linking } from 'react-native';
 import {enderecoInvalidoHttps, camposNaoPreenchidos} from '../mensagens/Msg';
+import axios from 'axios';
 
 export const navegaTela = (navigation, telaAlvo, params) =>{
     navigation.navigate(telaAlvo, params);
@@ -81,4 +82,8 @@ export const irPraWeb = (endereco) =>{ // talvez mude tudo isso pra um axios da 
         .catch(error => {
             alert(enderecoInvalidoHttps());
     });
+}
+
+export const consultarProdutoPorId = (id) =>{
+    
 }

@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, StatusBar, TouchableOpacity, ActivityIndicator,
 import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
-import { navegaTela } from "../../servicos/funcoes.js";
+import { navegaTela } from "../../servicos/Funcoes.js";
 import { useNavigation } from '@react-navigation/native';
 
 import * as NavigationBar from 'expo-navigation-bar';
@@ -64,25 +64,14 @@ export default function PaginaInicial() {
                     Logística + Tecnologia
                 </Text>
 
-
-        
-       
-
-
-               
+                <Text style={styles.lblLogTech}>
+                    Empresa: Zetta
+                </Text>
             <View style={styles.BtnIniciarView}>
                 <TouchableOpacity onPress={() => navigation.navigate('Indexador')} style={styles.BtnIniciar}>
                     <Text style={styles.txtBtn}>Entrar</Text>
                 </TouchableOpacity>
             </View>            
-
-    
-               
-                
-           
-      
-
-
 
             </View>
         </LinearGradient>

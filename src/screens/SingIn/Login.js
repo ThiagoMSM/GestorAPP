@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { navegaTela } from '../../servicos/funcoes.js';
+import { navegaTela } from '../../servicos/Funcoes';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { camposNaoPreenchidos, LoginFalha } from '../../mensagens/Msg.js';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
