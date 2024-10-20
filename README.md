@@ -1,2 +1,1 @@
-
-Ta ai o readme boy, faz teu doce
+Gestor App é o aplicativo auxiliar do projeto da empresa Pequeno Grande Gestor, feito e testado pela empresa Rigel Tech. Sua função é auxiliar os funcionarios da empresa, da qual contratrar nossos serviços, com a exibição das informações dos produtos cadastrados de forma facil, rapida, eficiente e versatil. Essas informações se encontraram em um QRCode, que pode ser gerado dentro do software que disponiblizamos, onde o aplicativo lerá e exibirá os dados mais cruciais da mercadoria em questão do qual o QRcode foi gerado.  
