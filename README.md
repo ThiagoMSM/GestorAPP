@@ -36,16 +36,12 @@ Para instalar o Gestor App, siga os passos abaixo:
 3. Instale as dependências:
    ```bash
    npm install
-
-4. Instale as dependências adicionais:
-   ```bash
-   npm install
    npx expo install react-native-gesture-handler
    npx expo install react-native-screens react-native-safe-area-context
    npm install expo-camera
    npx expo install expo-navigation-bar
    npx expo install expo-font
    
-6. Inicie o aplicativo:
+4. Inicie o aplicativo:
    ```bash
    npx expo start
