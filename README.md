@@ -27,7 +27,7 @@ Para instalar o Gestor App, siga os passos abaixo:
 
 1. Clone o repositório:
    ```bash
-   git clone -b usuarios https://github.com/GuilhermeTiago22/GestorApp.git
+   git clone -b usuarios https://github.com/GabrielMarRib/GestorAPP.git
 
 2. Navegue até o diretório do projeto:
    ```bash
