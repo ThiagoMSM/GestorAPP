@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from "@expo-google-fonts/jetbrains-mono";
 import { useFonts } from "expo-font";
 import { useNavigation } from '@react-navigation/native';
-import { navegaTela } from '../../servicos/Funcoes';
+import { navegaTela } from "../../servicos/Funcoes";
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Animatable from 'react-native-animatable';
 

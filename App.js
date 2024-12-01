@@ -14,15 +14,17 @@ import Consulta from './src/servicos/Consulta';
 //import CadastroGestor from './src/screens/SingUp/CadastroGestor';
 const Stack = createStackNavigator();
 
+//npm install expo@latest
 //npx expo install react-native-gesture-handler
 //npx expo install react-native-screens react-native-safe-area-context
 //npm install @react-navigation/native @react-navigation/stack
 //npm install @react-native-async-storage/async-storage 
 //npm install react-native-svg
 //npm install expo-camera
-//npx expo install expo-navigation-bar
+//npm install expo-navigation-bar
 //npx expo install expo-font
 //npm i axios
+
 function App(){
   
 

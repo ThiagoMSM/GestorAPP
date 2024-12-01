@@ -43,10 +43,16 @@ export default function Consulta() {
             }
 
             try {
-                const response = await axios.post('http://pggzettav3.mooo.com/api/index.php', {
+                const response = await axios.post('http://discordia.com.br/', {
                     funcao: 'consultarProdutoTODOPorId',
                     senha: '@7h$Pz!q2X^vR1&K',
                     id: codigo
+                },{
+                  headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
+                    "Accept": "application/json, text/plain, */*",
+                    "Connection": "keep-alive",
+                  },
                 });
                 if (response.data?.message === "Nenhum dado encontrado") {
                     setDados("Nenhum dado encontrado");
