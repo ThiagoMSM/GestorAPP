@@ -85,7 +85,7 @@ export default function Consulta() {
     };
 
     return (
-        <LinearGradient colors={['#e39f6f', '#e04d18']} style={styles.background}>
+        <LinearGradient colors={['#243447', '#16202e']} style={styles.background}>
             <View style={styles.container}>
                 <ScrollView contentContainerStyle={styles.scrollContainer}>
                     <TouchableOpacity style={styles.botaoVoltar} onPress={() => navegaTela(navigation, 'Indexador')}>
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         top: 50, 
         padding: 10,
         width: "30%",
-        backgroundColor: 'rgba(224, 77, 24, 0.8)',
+        backgroundColor: '#16202e',
         borderRadius: 5,
         alignItems: 'center',
         zIndex: 10, // Ensures the button stays on top
