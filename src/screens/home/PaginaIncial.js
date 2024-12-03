@@ -28,8 +28,12 @@ export default function PaginaInicial() {
 
     return ( 
         
-        <LinearGradient colors={['#f8c6a3', '#e04d18', '#1e1e1e']} style={styles.background}>
-                <View style={styles.container}>
+        <LinearGradient
+        colors={['#4b5563', '#1e293b', '#0f172a']} // tons harmônicos e escuros
+        style={styles.background}
+        >
+        <View style={styles.container}>
+
               
             
     <View style={styles.DivContainerSuperior}>
@@ -183,7 +187,7 @@ const styles = StyleSheet.create({
     txtBtn: {
         fontSize: 15,
         fontFamily: "JetBrainsMono_400Regular",
-        color: "#e04d18",
+        color: "#1e293b",
     },
     BtnIniciar: {
         backgroundColor: "#FFFF",

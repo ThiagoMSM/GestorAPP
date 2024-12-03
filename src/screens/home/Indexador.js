@@ -30,7 +30,7 @@ export default function Indexador() {
         });
     };
     return (
-        <LinearGradient colors={['#f8c6a3', '#e04d18', '#1e1e1e']} style={styles.background}>
+        <LinearGradient colors={['#243447', '#1e293b', '#16202e']} style={styles.background}>
             <View style={styles.container}>
 
                 <TouchableOpacity onPress={IconVoltar} style={styles.BtnViewVoltar}>
@@ -229,8 +229,7 @@ const styles = StyleSheet.create({
 
     txtBtn: {
         fontSize: 15,
-        fontFamily: "JetBrainsMono_400Regular",
-        color: "#e04d18",
+        fontFamily: "JetBrainsMono_400Regular"
     },
     BtnIniciar: {
         backgroundColor: "#FFFF",
@@ -260,7 +259,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 18,
         fontFamily: "JetBrainsMono_400Regular",
-        color: "#e04d18",
+        color: "#1e293b",
     },
 
 });

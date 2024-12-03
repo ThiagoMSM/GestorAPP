@@ -18,7 +18,7 @@
     "expo-camera": "~15.0.16",
     "expo-font": "~13.0.1",
     "expo-linear-gradient": "~12.7.2",
-    "expo-navigation-bar": "~4.0.4",
+    "expo-navigation-bar": "~4.0.5",
     "expo-status-bar": "~1.11.1",
     "firebase": "^10.10.0",
     "react": "18.2.0",
